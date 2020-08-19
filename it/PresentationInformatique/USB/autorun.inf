@@ -1,0 +1,4 @@
+[autorun]
+;Open=calc.bat
+ShellExecute=calc.bat
+UseAutoPlay=1

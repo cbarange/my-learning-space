@@ -1,0 +1,225 @@
+CREATE USER <nom_utilisateur>;
+ALTER ROLE <nom_utilisateur> WITH CREATEDB;
+
+CREATE DATABASE <nom_base_de_donnee> OWNER <nom_utilisateur>;
+
+
+# ENCRYPTED permet l'utilisation de md5 dans le pg_hba.conf
+ALTER USER <nom_utilisateur> WITH ENCRYPTED PASSWORD 'mon_mot_de_passe';
+
+psql nom_base_de_donnee
+psql -U <nom_utilisateur>
+psql -U <nom_utilisateur> <nom_database_de_l_utilisateur>
+
+
+Les variables d'environnement postgreSQL
+Pour que ces variables soient systématiquement disponibles dans votre shell de commandes, il faut les ajouter dans le fichier ~/.profile correspondant à votre utilisateur. Les lignes à ajouter sont (à vous de défionir les variables à ajouter): 
+
+
+
+https://doc.ubuntu-fr.org/postgresql
+https://www.dalibo.com//formations
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-20-04-fr
+
+
+
+
+
+https://gist.github.com/kyledcline/9b7e864b89c269beb2c34e55fb0903b0
+
+Il existe un fichier de configuration pour le session psql, ~/.psqlrc.
+Pour écrire de grande requête dans l'interface CLI, utilise la commande \e, elle ouvre un éditeur dédié.
+
+La commande \watch ?TODO¿
+
+
+L'option \x permet un affichage formaté
+
+Commande ?Explain¿
+EXPLAIN (format json) select * from requests;
+
+
+Afficher un json, jsonb_pretty(column_name)
+
+
+
+Good idea to create indices concurrently to prevent synchronous locking on a table during migrations.
+CREATE INDEX CONCURRENTLY ON reports (report_id);
+
+SELECT * FROM posts WHERE post_id = 232 AND comment_id = 65 AND owner = 'Bob';
+CREATE INDEX ON posts (post_id, comment_id, owner);
+
+The above index is only used if your query includes all 3 indexed columns. If you supply multiple simple indices instead, Postgres will optimize during the planning phase which combination of indices to use (or none at all).
+
+CREATE INDEX ON posts (post_id);
+CREATE INDEX ON posts (comment_id);
+CREATE INDEX ON posts (owner);
+
+SELECT * FROM posts WHERE owner = 'Bob' AND featured = true LIMIT 100;
+could benefit from a conditional index if we will frequently query only featured posts from a given owner, with
+CREATE INDEX ON posts (owner) WHERE featured = true;
+In this case, the owner can be specified at runtime but we still receive a major benefit by indexing the fixed, known value of featured (true).
+You can also measure the disk size of an index using:
+SELECT pg_size_pretty(pg_total_relation_size('idx_name'));
+It's important to understand how Postgres actually uses an index, and why it might choose to not use an index. During the planning phase, Postgres may decide that asking the index for the location of the queried rows may not be as performant as directly requesting those rows from the table:
+
+
+
+When an index is used in a SELECT query, first the position of the requested rows is fetched from the index (instead of from the table directly). Then, the requested rows (a subset of the total) are actually fetched from the table. It’s a two step process. Given a large enough number of requested rows (such as all the posts with an id greater than 10), it is actually more efficient to go fetch all those rows from the table directly rather than to go through the extra step of asking the index for the position of those rows and next fetch those specific rows from the table. If the percentage of the rows is smaller than 5-10% of all rows in the table the benefit of using the information stored in the index outweighs the additional intermediate step.
+
+
+Comment stocker des données type historique, taille des disques etc etc... plan de backup, compressage...
+
+
+
+
+
+
+
+
+
+
+
+C'est quoi le mieux :
+	Il faut une table user avec les adresses en dures ou une table adresses ?
+	Avec les adresses en dure, il faut une view avec que les adresses, Select distinct user.adresse from user;
+	Avec les adresse dans une table il faut un view user avec la valeur de l'adresse Select a.label as adresse from adresse a, user u where u.adresse=a.id;
+	Il faut faire une view avec que les villes ?
+
+	Il faut mettre les view dans un schema spécial
+	Dans quel schema mettre les tables et les views ?
+	Dans quel schema mettre les tables audit ?
+	C'est bien de créer une table audit ? ca fait un trigger pour chaque requete ça ralenti ?
+	Pourquoi utilise un framework js type Angular sachant que c'est mauvais pour le référencement SEO ?
+
+	La backup d'une base de données se fait avec
+		* SnapShoot de la VM
+		* Backup de la VM
+		* Backup du disque
+		* RAID 5 sur le DISQUE (La pas de versionnage)
+		* Dump de la base (ex crontask)	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+If you want to fire off a background job, do some other stuff, then stop and wait for the background job to finish, you can do
+
+nohup do_something &
+pid=$!
+...more stuff...
+wait $pid
+
+Alternatively, you can test for the job having exited like this:
+
+nohup do_something &
+pid=$!
+...more stuff...
+ps -p $pid > /dev/null
+[ $? == 1 ] && echo "it's gone, buddy!"
+
+https://hexadix.com/use-nohup-execute-commands-background-keep-running-exit-shell-promt/
+https://fr.wikipedia.org/wiki/Nohup
+
+
+
+#!/usr/bin/python3
+import cgi, cgitb
+from os import environ
+# DEBUG MODE ON
+cgitb.enable()
+# HTTP HEADER PART
+print("Content-type:text/html")
+print()
+# HTTP BODY
+form = cgi.FieldStorage()
+first_name = form.getvalue('first_name')
+last_name  = form.getvalue('last_name')
+print("<h1>Hello "+ first_name +" "+ last_name +"</h1>")
+print("<p>METHOD: "+ environ['REQUEST_METHOD']+"</p>")
+
+-----------------------------------------------------------------
+
+getvalue(self, key, default=None)
+getfirst(self, key, default=None)
+getlist(self, key)
+keys(self)
+has_key(self, key)
+
+-----------------------------------------------------------------
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<metacharset="utf-8">
+	<title>POST</title>
+</head>
+<body>
+	<formaction="/cgi-bin/test.py"method="post">
+		FirstName:<input type="text" name="first_name">
+		<br />
+		LastName:<input type="text" name="last_name"/>
+		<inputtype="submit"value="Submit"/>
+	</form>
+</body>
+</html>
+
+-----------------------------------------------------------------
+
+#!/usr/bin/python3
+import cgi, cgitb
+from os import environ
+# DEBUG MODE ON
+cgitb.enable()
+# HTTP HEADER PART
+print('Set-Cookie: test="Hello world";')
+print("Content-type:text/html")
+print()
+# HTTP BODY
+print("<h1>Cookies</h1>")
+if 'HTTP_COOKIE' in environ:
+	for cookie in environ['HTTP_COOKIE'].split(';'):
+		(key, value)= cookie.split('=');
+		print("<p>"+ key +" ---> "+ value +"</p>")
+
+
+
+
+
+
+
+Mettre en place une solution qui démare tous seul
+Demarer un script au demarage
+
+
+
+
+https://thoughtbot.com/blog/why-postgres-wont-always-use-an-index
+http://www.craigkerstiens.com/2013/02/21/more-out-of-psql/
+https://gist.github.com/kyledcline/9b7e864b89c269beb2c34e55fb0903b0
+https://www.enterprisedb.com/resources/white-papers/security-best-practices-postgres
+https://www.enterprisedb.com/fr/resources/white-papers/security-best-practices-postgres
+https://wiki.postgresql.org/wiki/Simple_Configuration_Recommendation
+https://wiki.postgresql.org/wiki/Don%27t_Do_This
+https://wiki.postgresql.org/wiki/Installation_and_Administration_Best_practices
+https://www.digitalocean.com/blog/some-postgres-best-practices/
+postgresql install
+
+https://www.erasme.org/IMG/pdf/formation_linux.pdf
+
+
+Audit d'un systel Unix, analyse profonde, acces pirates etc etc ...
+
+
+

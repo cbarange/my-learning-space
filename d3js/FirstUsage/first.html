@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>First Usage</title>
+	<script type="text/javascript" src="../d3.js"></script>
+</head>
+<body>
+
+<div id="container" style="width: 100%;height: 100%;">
+	<div id="chart"></div>
+</div>
+
+
+<script type="text/javascript">
+const margin = {top: 50, right: 30, bottom: 30, left: 60},
+    width = document.getElementById("container").offsetWidth * 0.95 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+const parseTime = d3.timeParse("%d/%m/%Y");
+const dateFormat = d3.timeFormat("%d/%m/%Y");
+
+const x = d3.scaleTime()
+    .range([0, width]);
+
+const y = d3.scaleLinear()
+    .range([height, 0]);
+    
+const line = d3.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.close); });
+
+const area = d3.area()
+    .x(function(d) { return x(d.date); })
+    .y0(height)
+    .y1(function(d) { return y(d.close); });
+
+// Attention ici il faut que le body possède déjà un DIV dont l'ID est chart
+const svg = d3.select("#chart").append("svg")
+    .attr("id", "svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("text")
+    .attr("x", (width / 2))             
+    .attr("y", 0 - (margin.top / 2))
+    .attr("text-anchor", "middle")
+    .style("fill", "#5a5a5a")
+    .style("font-family", "Raleway")
+    .style("font-weight", "300")
+    .style("font-size", "24px")
+    .text("Cours journalier de l'or depuis 2001");
+
+function addTooltip() {
+    // Création d'un groupe qui contiendra tout le tooltip plus le cercle de suivi
+    var tooltip = svg.append("g")
+        .attr("id", "tooltip")
+        .style("display", "none");
+    
+    // Le cercle extérieur bleu clair
+    tooltip.append("circle")
+        .attr("fill", "#CCE5F6")
+        .attr("r", 10);
+
+    // Le cercle intérieur bleu foncé
+    tooltip.append("circle")
+        .attr("fill", "#3498db")
+        .attr("stroke", "#fff")
+        .attr("stroke-width", "1.5px")
+        .attr("r", 4);
+    
+    // Le tooltip en lui-même avec sa pointe vers le bas
+    // Il faut le dimensionner en fonction du contenu
+    tooltip.append("polyline")
+        .attr("points","0,0 0,40 55,40 60,45 65,40 120,40 120,0 0,0")
+        .style("fill", "#fafafa")
+        .style("stroke","#3498db")
+        .style("opacity","0.9")
+        .style("stroke-width","1")
+        .attr("transform", "translate(-60, -55)");
+    
+    // Cet élément contiendra tout notre texte
+    var text = tooltip.append("text")
+        .style("font-size", "13px")
+        .style("font-family", "Segoe UI")
+        .style("color", "#333333")
+        .style("fill", "#333333")
+        .attr("transform", "translate(-50, -40)");
+    
+    // Element pour la date avec positionnement spécifique
+    text.append("tspan")
+        .attr("dx", "-5")
+        .attr("id", "tooltip-date");
+    
+    // Positionnement spécifique pour le petit rond	bleu
+    text.append("tspan")
+        .style("fill", "#3498db")
+        .attr("dx", "-60")
+        .attr("dy", "15")
+        .text("●");
+    
+    // Le texte "Cours : "
+    text.append("tspan")
+        .attr("dx", "5")
+        .text("Cours : ");
+    
+    // Le texte pour la valeur de l'or à la date sélectionnée
+    text.append("tspan")
+        .attr("id", "tooltip-close")
+        .style("font-weight", "bold");
+    
+    return tooltip;
+}
+
+d3.tsv("http://localhost:8080/data.tsv", function(error, data) {
+    data.forEach(function(d) {
+        d.date = parseTime(d.date);
+        d.close = +d.close;
+    });
+    
+    data.sort(function(a, b) {
+        return a.date - b.date;
+    });
+    
+    x.domain(d3.extent(data, function(d) { return d.date; }));
+    y.domain(d3.extent(data, function(d) { return d.close; }));
+    
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+    svg.append("g")
+        .call(d3.axisLeft(y))
+        .append("text")
+        .attr("fill", "#000")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", "0.71em")
+        .style("text-anchor", "end")
+        .text("$");
+  
+    svg.selectAll("y axis").data(y.ticks(10)).enter()
+        .append("line")
+        .attr("class", "horizontalGrid")
+        .attr("x1", 0)
+        .attr("x2", width)
+        .attr("y1", function(d){ return y(d);})
+        .attr("y2", function(d){ return y(d);});
+        
+    var linePath = svg.append("path")
+        .datum(data)
+        .style("fill", "none")
+        .style("stroke", "#3498db")
+        .style("stroke-width", "1px")
+        .style("opacity", "0.6")
+        .attr("d", line);
+    
+    // Le reste du code ira ici
+	svg.append("linearGradient")
+	    .attr("id", "areachart-gradient")
+	    .attr("gradientUnits", "userSpaceOnUse")
+	    .attr("x1", 0)
+	    .attr("x2", 0)
+	    .attr("y1", y(d3.min(data, function(d) { return d.close; })))
+	    .attr("y2", y(d3.max(data, function(d) { return d.close; })))
+	    .selectAll("stop")
+	        .data([
+	            {offset: "0%", color: "#F7FBFE"},
+	            {offset: "100%", color: "#3498DB"}
+	        ])
+	    .enter().append("stop")
+	        .attr("offset", function(d) { return d.offset; })
+	        .attr("stop-color", function(d) { return d.color; });
+
+	var areaPath = svg.append("path")
+	    .datum(data)
+	    .style("fill", "url(#areachart-gradient)")
+	    .style("opacity", "0.6")
+	    .attr("d", area);
+}
+
+)
+var tooltip = addTooltip();
+var bisectDate = d3.bisector(function(d) { return d.date; }).left;
+svg.append("rect")
+    .attr("class", "overlay")
+    .attr("width", width)
+    .attr("height", height)
+    .on("mouseover", function() { 
+        tooltip.style("display", null);
+    })
+    .on("mouseout", function() {
+        tooltip.style("display", "none");
+    })
+    .on("mousemove", mousemove);
+
+function mousemove() {
+    var x0 = x.invert(d3.mouse(this)[0]),
+        i = bisectDate(data, x0),
+        d = data[i];
+    
+    tooltip.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
+    
+    d3.select('#tooltip-date')
+        .text(dateFormat(d.date));
+    d3.select('#tooltip-close')
+        .text(d.close + "$");
+}
+
+
+</script>
+
+<style type="text/css">
+
+</style>
+
+</body>
+</html>
+
+<!--
+http://datawanderings.com/2019/11/01/tutorial-making-an-interactive-line-chart-in-d3-js-v-5/
+http://datawanderings.com/2019/10/28/tutorial-making-a-line-chart-in-d3-js-v-5/
+https://stackoverflow.com/questions/23218174/how-do-i-save-export-an-svg-file-after-creating-an-svg-with-d3-js-ie-safari-an
+https://www.datavis.fr/index.php?page=linearchart-improve
+https://www.datavis.fr/index.php?page=linearchart
+https://bl.ocks.org/gordlea/27370d1eea8464b04538e6d8ced39e89
+-->
+
