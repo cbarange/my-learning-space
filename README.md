@@ -18,6 +18,28 @@ A quoi ça sert ?
 
 # Outils et Langages
 
+## La programmation
+
+Functionnel
+Orienté objet
+Concaténation et Substitutions avec string, (String format, etcetc)
+Design Patterns
+  https://www.youtube.com/watch?v=zlg4jCY2g4o
+  https://www.youtube.com/watch?v=NjhUK68rzCs
+  https://www.youtube.com/watch?v=agkWYPUcLpg
+  https://www.youtube.com/watch?v=v9ejT8FO-7I
+  SOLID
+  MVC
+  Singleton
+
+inheritance : https://javarevisited.blogspot.com/2012/10/what-is-inheritance-in-java-and-oops-programming.html
+polymorphism :  https://javarevisited.blogspot.com/2011/08/what-is-polymorphism-in-java-example.html
+
+MultiTache
+Persistence
+
+
+
 ## Shell
 
 / * TO DO * /
@@ -213,8 +235,50 @@ https://www.youtube.com/watch?v=MfF750YVDxM
 
 ## Python
 
+* https://realpython.com/python-sleep/
+* https://code.tutsplus.com/fr/articles/introduction-to-parallel-and-concurrent-programming-in-python--cms-28612
+* https://realpython.com/intro-to-python-threading/
+* https://www.youtube.com/watch?v=7lmCu8wz8ro
+* https://www.tutorialsteacher.com/python/private-and-protected-access-modifiers-in-python
+* 
+
+* Numpy
+* SciPy
+* Boto 3
+* TensorFlow
+* Keras
+* pytorch
+* xgboost
 
 https://www.youtube.com/watch?v=7lmCu8wz8ro
+
+
+--- Cours IA EPSI I4 ---
+matplot
+panda
+numpy
+sklearn & sklearn.linear_model LinearRegression
+import os
+import pefile
+notepad = pefile.PE("notepad.exe", fast_load=True)
+dbgRVA = notepad.OPTIONAL_HEADER.DATA_DIRECTORY[6].VirtualAddress
+imgver = notepad.OPTIONAL_HEADER.MajorImageVersion
+expRVA = notepad.OPTIONAL_HEADER.DATA_DIRECTORY[0].VirtualAddress
+iat = notepad.OPTIONAL_HEADER.DATA_DIRECTORY[12].VirtualAddress
+sections = notepad.FILE_HEADER.NumberOfSections
+dll = notepad.OPTIONAL_HEADER.DllCharacteristics
+print("Notepad PE info: \n")
+print ("Debug RVA: " + dbgRVA)
+print ("\nImage Version: " + imgver)
+print ("\nExport RVA: " + expRVA)
+print ("\nImport Address Table: " + iat)
+print ("\nNumber of Sections: " + sections)
+print ("\nDynamic linking libraries: " + dll)
+
+
+
+
+
 
 
 1 - Faire un programme qui attend 20 seconde et afficher pstree
@@ -252,7 +316,8 @@ MultiTasking
   https://www.youtube.com/watch?v=fKl2JW_qrso
   MultiThreading
   MultiProcessing
-
+Python data modele
+Python decorator
 Programmation Système
 
 
@@ -404,6 +469,9 @@ Créer un processus :
 ## VBA
 
 ## NodeJs
+
+https://openclassrooms.com/fr/courses/1056721-des-applications-ultra-rapides-avec-node-js
+
 
 ## VueJs
 
