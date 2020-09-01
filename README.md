@@ -624,7 +624,32 @@ html {
 ## Javascript
 
 https://www.youtube.com/watch?v=Kp3HGwlXwCk
+```js
+// L'objet / JSON qui stocke ke formulaire
+atDataForm = {
+        user_firstname: null,
+        user_lastname: null,
+        user_email: null,
+        user_subject: null,
+        user_message: null
+      }
 
+// Fonction vérifie si l'object possède des clés dont la valeur est null 
+function checkIfObjectContainsNullValue(object){
+    let isObjectNullLess = true
+    Object.entries(object).map(([k,v]) => !v ? isObjectNullLess = false : undefined )
+    return isObjectNullLess
+}
 
+// Fonction métier, vérifie sur le formulaire est bien complété
+function submitEmailForm(){
+  if(checkIfObjectContainsNullValue(atDataForm)){
+      emailjs.send(atDataForm)
+      alert("Votre email a bien été envoyé")
+  } else {
+     alert("Veuillez correctement remplire le formulaire")
+  }
+} 
 
+```
 
