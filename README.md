@@ -55,10 +55,25 @@ Persistence
 https://www.youtube.com/watch?v=PIgSrjt76Lo&feature=youtu.be
 https://www.youtube.com/watch?v=26DZpCFWBdw
 
+## AWS
 
+https://www.youtube.com/watch?v=0YXfDuaJkCY
+
+Aller sur aws.amazon.com/free et créer un compte "personal"
+Ouvrir la console EC2, ajouter une nouvelle instance avec une offre "tier-gratuit" 
+Récupérer la clé ssh privée, l'ip public et la commande ssh de connexion 
+Depuis la console "AWS Cost Explorer", aller dans la console de facturation et dans les "préférences de facturation" pour ajouter le rappel de tier-gratuit
+Depuis la console EC2 modifier le groupe de sécurité launch-wizard-1 ajouter des règles de pare-feu
+
+user : cbarange
+machine : i-030516c68287448cb
+Public IPs: 13.59.162.131      
+Private IPs: 172.31.35.140
+ssh -i "aws_micro.pem" ubuntu@ec2-13-59-162-131.us-east-2.compute.amazonaws.com
 
 
 ---
+
 
 ## PostgreSQL
 
@@ -308,6 +323,7 @@ interface, enum, abstract, static, final
 PEP8
 les meilleurs modules
  flask
+ https://www.youtube.com/watch?v=FWU_tJqr1Po
  cgi
  pygame
  json
@@ -460,6 +476,9 @@ Créer un processus :
 
 ## Go
 
+https://www.youtube.com/watch?v=LIFZPzupwgs
+
+
 ## Assembleur
 
 ## Basic
@@ -471,6 +490,8 @@ Créer un processus :
 ## NodeJs
 
 https://openclassrooms.com/fr/courses/1056721-des-applications-ultra-rapides-avec-node-js
+https://www.youtube.com/watch?v=IwpBluLjynI
+
 
 
 ## VueJs
@@ -538,6 +559,9 @@ merge, rebase, checkout, pull (request), fetch, status, push, commit, reset, rev
 ## Kubernetes
 
 ## Open Api / Swagger
+https://www.youtube.com/watch?v=N_jQcjqEJN8&list=PLwF40GVCw5Zq4IZ5HYzd428pL-pM8Fym9&index=142&t=0s
+https://www.youtube.com/watch?v=0FQ6w4CO5Nw
+
 
 ## HTML
 ```html
