@@ -522,7 +522,24 @@ merge, rebase, checkout, pull (request), fetch, status, push, commit, reset, rev
 
 ## SSL
 
+
+sudo certbot certonly --manual --cert-name ws_cert -d aws.cbarange.ovh --register-unsafely-without-email --preferred-challenges dns --dry-run
+
 ## VPN
+
+```bash
+# Server
+cd
+mkdir openvpn
+cd openvpn
+wget https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
+sudo bash openvpn-install.sh
+# Enable UDP on 1194
+scp -i "publickey.pem" user@host:/home/user/client.ovpn ./client.ovpn
+# Client for popos
+#https://support.system76.com/articles/use-openvpn/
+sudo apt install network-manager-openvpn-gnome
+```
 
 ## Docker
 
@@ -564,6 +581,9 @@ https://www.youtube.com/watch?v=0FQ6w4CO5Nw
 
 
 ## HTML
+`data:text/html;base64,PGgxPkhleSAhPC9oMT4=`
+https://developer.mozilla.org/fr/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
+
 ```html
 <!DOCTYPE html>
 <title>My Example</title>
@@ -644,6 +664,12 @@ html {
 }
 ```
 
+## WebSocket
+
+https://stackoverflow.blog/2019/12/18/websockets-for-fun-and-profit/
+https://blog.stanko.io/do-you-really-need-websockets-343aed40aa9b
+https://medium.com/voodoo-engineering/websockets-on-production-with-node-js-bdc82d07bb9f
+https://www.ably.io/topic/websockets
 
 ## Javascript
 
@@ -676,4 +702,37 @@ function submitEmailForm(){
 } 
 
 ```
+
+## CTF 
+
+https://ungeek.fr/le-petit-guide-du-chasseur-de-drapeaux/
+https://github.com/zardus/ctf-tools
+https://github.com/apsdehal/awesome-ctf#solve
+
+
+## Commande Line
+
+cut
+ed
+ex
+head
+join
+nl
+sed
+strings
+tee
+uniq
+wc
+tr
+split
+tail
+netstat
+tcpdump
+echo
+chmod
+chown
+passwd
+alias
+
+
 
