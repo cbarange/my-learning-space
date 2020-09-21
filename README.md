@@ -44,7 +44,6 @@ Persistence
 
 / * TO DO * /
 
-
 ## Fail2Ban
 
 ## Administration UNIX
@@ -71,6 +70,10 @@ Public IPs: 13.59.162.131
 Private IPs: 172.31.35.140
 ssh -i "aws_micro.pem" ubuntu@ec2-13-59-162-131.us-east-2.compute.amazonaws.com
 
+
+Déploiements Bleus / verts : https://www.youtube.com/watch?v=NxbDHn5ryc8
+Sécuriser l'utilisateur root : https://www.youtube.com/watch?v=29qidFrp0fs
+Le stockage S3 : https://www.youtube.com/watch?v=4RI3pDKpx38
 
 ---
 
@@ -542,6 +545,71 @@ sudo apt install network-manager-openvpn-gnome
 ```
 
 ## Docker
+https://www.youtube.com/watch?v=8q0wcmeJ2Gk
+```bash
+# Dockerfile
+FROM debian
+MAINTAINER cbarange <cbarange@gmail.com>
+# Stage 1
+RUN apt-get update
+# Stage 2
+RUN apt-get install -y wget
+# Stage 3
+RUN apt-get install -y curl nginx 
+
+# ADD and COPY
+# ADD pathFromHost pathToGuest, ADD supporte aussi des url pour le chemin d'origine du fichier
+# COPY pathFromHost pathToGuest
+# Les paths est celui du Dockerfile
+ADD script.sh /usr/bin/script.sh
+RUN chmod 755 /usr/bin/script.sh
+# Open port in container
+EXPOSE 80
+
+# CMD and ENTRYPOINT
+# CMD : Peut etre surchagé quand on passe des arguments lors du lancement de l'image
+# ex : docker run --it ubuntu bash, ici bash surcharge l'instruction CMD
+# ENTRYPOINT : Ne peut pas être surchagé
+# ex : 
+# ENTRYPOINT ["wget"]
+# CMD ["--help"]
+# Pour changer le comportement de notre container
+# docker run -it --rm  image_name -drc URL
+# En combinant ENTRYPOINT et CMD, on peut passer des paramètres à une commande
+ENTRYPOINT ["scripts.sh"]
+#CMD ["script.sh"]
+# Le container doit être dans un état bloquant pour ne pas se couper, on desactive le mode deamon pour avoir une commande active dans la console du container
+#CMD ["nginx", "-g", "deamon off;"]
+
+# Map un dossier entre l'host et le container
+VOLUME /volume/data 
+
+# Variables d'environment
+ENV MYSQL_USER_PASSWORD superpassword!
+
+```
+
+```bash
+docker build -t pseudo/projectname:version path/to/Dockerfile
+# les RUN sont des "stages" des étapes, elles sont mises en cache et server de "snapshots" pour les futures évolutions de l'image
+# Si on supprime une commande RUN an haut du fichier, l'ensemble les stages suivants seront recréer sans utiliser le cache
+# On met en haut du docker file les packages standard qui n'évolurons pas, on gagne ainsi du temps lors du build 
+# C'est le fonctionnement de l'AUFS
+docker run --rm -it pseudo/projectname
+# --rm : Remove le container quand il s'arrete
+# -it : Affiche dans la console les sorties du container
+# -d : Mode détaché
+# -p : Map le port entre l'host et le container 
+# -v : Map un dossier ente l'host et le container
+# -e : Assigne des variables d'environment
+# ex : docker run -d -p 80:80 -e MYSQL_USER_PASSWORD=superNewpassword! -v /path/from/host:/path/to/container pseudo/projectname
+docker inspect containerID
+docker ps -a
+docker rm containerID
+docker exec -ti containerID command
+docker exec -ti containerID bash
+```
+
 
 ## Virtualisation
 
@@ -672,6 +740,12 @@ https://medium.com/voodoo-engineering/websockets-on-production-with-node-js-bdc8
 https://www.ably.io/topic/websockets
 
 ## Javascript
+
+
+programmation fonctionnel : https://www.youtube.com/watch?v=mW_nLYvXyKk
+programmation fonctionnel : https://www.youtube.com/watch?v=YZwilQqzdYA
+programmation fonctionnel : https://www.youtube.com/watch?v=-Cdt-1tWJ3M
+
 
 https://www.youtube.com/watch?v=Kp3HGwlXwCk
 ```js
