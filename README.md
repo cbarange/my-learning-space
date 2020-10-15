@@ -808,5 +808,42 @@ chown
 passwd
 alias
 
+## REST API
+Sources :
+* https://atinux.developpez.com/tutoriels/javascript/mongodb-nodejs-mongoose/#LVII
+* https://hackernoon.com/goodbye-redux-26e6a27b3a0b
+* https://www.toptal.com/nodejs/secure-rest-api-in-nodejs
+* https://blog.logrocket.com/setting-up-a-restful-api-with-node-js-and-postgresql-d96d6fc892d8/
+* https://www.enterprisedb.com/postgres-tutorials/how-quickly-build-api-using-nodejs-postgresql
+
+
+
+
+
+
+
+
+### Securité
+Source:
+* https://confituregeek.wordpress.com/2016/01/27/securiser-une-api-rest-via-une-clef-dapi/
+* https://www.redhat.com/fr/topics/security/api-security
+* https://blog.octo.com/securiser-une-api-rest-tout-ce-quil-faut-savoir/
+* https://www.codeheroes.fr/2018/03/23/securiser-une-api-rest/#:~:text=On%20a%20vu%20tout%20au,pour%20l'authentification%20des%20utilisateurs.
+
+Mettre en place une api Rest est une chose, la sécuriser en est un autre.
+
+**Login**
+
+Pour chaque requete le user envoie en paramètre son username et mot de passe. Cette méthode est très vulnérable attaque man in middle et pour chaque requete c'est le même couple username/mot de passe qui est utilisé.  
+
+**Token**
+
+Apres l'authentification avec son username et mot de passe le client reçoit un token qui sera réutilisé pour toute les autres requetes, ce token à une durée de vie limité. C'est le fonctionnemen de "JWT REST". Mais cette solution est toujours vulnerable au vol du token.
+
+**La clef d’api**
+
+On ajoute à chaque requête une signature, un secret est utilisé pour générer un hash : Signature = base64(HMAC-SHA1(requête, motdepasse)). On peut ajouter un timestamp pour limiter la durée de vie de cette signature, Put http://monsitedevoiture/voitures/123&signature=hizuefguzefu123&timestamp=1234567890  {user=toto ; prix=15000}
+
+
 
 
