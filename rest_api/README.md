@@ -48,7 +48,7 @@ echo "" > $OUTPUT_FILE
 
 sudo -u postgres psql -c "DROP DATABASE IF EXISTS $DATABASE_NAME_POSTGRES;"
 sudo -u postgres psql -c "DROP ROLE IF EXISTS $NAME_SUPERUSER_POSTGRES;"
-sudo -u postgres psql -c "CREATE USER $NAME_SUPERUSER_POSTGRES WITH PASSWORD '$PASSWORD_SUPERUSER_POSTGRES';"
+sudo -u postgres psql -c "CREATE USER $NAME_SUPERUSER_POSTGRES WITH PASSWORD '$PASSWORD_SUPERUSER_POSTGRES' SUPERUSER;"
 sudo -u postgres psql -c "CREATE DATABASE $DATABASE_NAME_POSTGRES WITH OWNER=$NAME_SUPERUSER_POSTGRES ENCODING 'UTF8';"
 
 #psql -f thefile.sql targetdatabase
@@ -58,9 +58,16 @@ psql -t -A \
 -p "$PORT_POSTGRES" \
 -U "$NAME_SUPERUSER_POSTGRES" \
 -d "$DATABASE_NAME_POSTGRES" \
--f "$QUERY_SQL_FILE" \
--o "$OUTPUT_FILE"
-#-c "$QUERY_SQL" \
+-f "$QUERY_SQL_FILE"
+#-o "$OUTPUT_FILE"
+#-c "$QUERY_SQL"
+# --- === ---
+
+# --- Check ---
+sudo -u postgres PGPASSWORD="$PASSWORD_SUPERUSER_POSTGRES" psql -h "$HOST_POSTGRES" -p "$PORT_POSTGRES" -U "$NAME_SUPERUSER_POSTGRES" -d "$DATABASE_NAME_POSTGRES"
+#\conninfo
+#\dn
+#\dt demo_schema.
 # --- === ---
 ```
 
@@ -69,11 +76,18 @@ psql -t -A \
 REVOKE CREATE ON SCHEMA public FROM PUBLIC;
 REVOKE ALL ON DATABASE demo_db FROM PUBLIC;
 -- Create new schema
-
+-- \c demo_db
+CREATE SCHEMA demo_schema;
+--\dn
 -- Create new table
 DROP TABLE IF EXISTS demo_schema.user CASCADE;
 CREATE TABLE demo_schema.user(
    username VARCHAR (355) NOT NULL
+);
+
+DROP TABLE IF EXISTS demo_schema.message CASCADE;
+CREATE TABLE demo_schema.message(
+   text VARCHAR (355) NOT NULL
 );
 -- Create trigger
 
@@ -94,45 +108,71 @@ DROP ROLE IF EXISTS insert_role;
 CREATE ROLE insert_role;
 GRANT CONNECT ON DATABASE demo_db TO insert_role;
 GRANT USAGE ON SCHEMA demo_schema TO insert_role;
-ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT SELECT, INSERT ON TABLES TO insert_role;
-ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT USAGE ON SEQUENCES TO insert_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA demo_schema GRANT SELECT, INSERT ON TABLES TO insert_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA demo_schema GRANT USAGE ON SEQUENCES TO insert_role;
 
 -- UPDATE ROLE
 DROP ROLE IF EXISTS update_role;
 CREATE ROLE update_role;
 GRANT CONNECT ON DATABASE demo_db TO update_role;
 GRANT USAGE ON SCHEMA demo_schema TO update_role;
-ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT SELECT, UPDATE ON TABLES TO update_role;
---ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT USAGE ON SEQUENCES TO update_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA demo_schema GRANT SELECT, UPDATE ON TABLES TO update_role;
+--ALTER DEFAULT PRIVILEGES IN SCHEMA demo_schema GRANT USAGE ON SEQUENCES TO update_role;
 
 -- DELETE ROLE
 DROP ROLE IF EXISTS delete_role;
 CREATE ROLE delete_role;
 GRANT CONNECT ON DATABASE demo_db TO delete_role;
 GRANT USAGE ON SCHEMA demo_schema TO delete_role;
-ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT SELECT, DELETE ON TABLES TO delete_role;
---ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT USAGE ON SEQUENCES TO delete_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA demo_schema GRANT SELECT, DELETE ON TABLES TO delete_role;
+--ALTER DEFAULT PRIVILEGES IN SCHEMA demo_schema GRANT USAGE ON SEQUENCES TO delete_role;
 
 -- ADMIN ROLE
 DROP ROLE IF EXISTS admin_role;
 CREATE ROLE admin_role;
+--GRANT ALL ON  DATABASE demo_db TO admin_role;
 GRANT CONNECT ON DATABASE demo_db TO admin_role;
 GRANT USAGE ON SCHEMA demo_schema TO admin_role;
-ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER, EXECUTE, TRUNCATE ON TABLES TO admin_role;
---ALTER DEFAULT PRIVILEGES IN SCHEMA myschema GRANT USAGE ON SEQUENCES TO admin_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA demo_schema GRANT SELECT, INSERT, UPDATE, DELETE, TRIGGER, TRUNCATE ON TABLES TO admin_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA demo_schema GRANT EXECUTE ON FUNCTIONS TO admin_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA demo_schema GRANT USAGE ON SEQUENCES TO admin_role;
 
 -- Create user from role
-GRANT insert_role TO joe;
-ALTER ROLE joe WITH LOGIN; 
+DROP ROLE IF EXISTS dba_user; 
+CREATE ROLE dba_user WITH IN ROLE admin_role LOGIN CONNECTION LIMIT 1 ENCRYPTED PASSWORD 'Epsi_2020!';
 
 -- Add new permissions for new schema
---GRANT ALL ON  DATABASE demo_db TO admin_role;
---SET ROLE admin_role;
-SELECT rolname FROM pg_roles;
-\du
-\dg
+--SET ROLE dba_user;
+--SELECT rolname FROM pg_roles;
+--\du
+--\dg
 
 ```
+
+## Plan de backup
+```bash
+# Source : https://www.digitalocean.com/community/tutorials/how-to-backup-postgresql-databases-on-an-ubuntu-vps
+# Backup database
+sudo -u postgres pg_dump postgres > postgres_db.bak
+# Usage : pg_dump -U user_name -h remote_host -p remote_port name_of_database > name_of_backup_file
+# Restore database
+sudo -u postgres empty_database_name < postgres_db.bak
+
+# The empty database should be created using "template0" as the base.
+#createdb -T template0 restored_database
+#psql restored_database < database.bak
+
+# Dump all databases
+pg_dumpall > backup_file
+psql -f backup_file postgres
+
+# Cron tab + export du backup
+```
+## Python Flask
+
+
+## NodeJs 
+
 
 
 ```sql
@@ -260,30 +300,6 @@ CREATE TABLE $SCHEMA_NAME.$TABLE_NAME(
 );
 -- --- === --- 
 ```
-
-## Plan de backup
-```bash
-# Source : https://www.digitalocean.com/community/tutorials/how-to-backup-postgresql-databases-on-an-ubuntu-vps
-# Backup database
-sudo -u postgres pg_dump postgres > postgres_db.bak
-# Usage : pg_dump -U user_name -h remote_host -p remote_port name_of_database > name_of_backup_file
-# Restore database
-sudo -u postgres empty_database_name < postgres_db.bak
-
-# The empty database should be created using "template0" as the base.
-#createdb -T template0 restored_database
-#psql restored_database < database.bak
-
-# Dump all databases
-pg_dumpall > backup_file
-psql -f backup_file postgres
-```
-
-## Python Flask
-
-
-## NodeJs 
-
 
 
 
