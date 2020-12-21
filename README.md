@@ -202,6 +202,22 @@ Backup, plan de backup dump import, import mariadb, oracle etc etc...
 
 Comment securiser l'utilisateur postgres apres l'installation de postgreSQL , acces que local a l'utilisateur ?
 
+La backup d'une base de données se fait avec
+* SnapShoot de la VM
+* Backup de la VM
+* Backup du disque
+* RAID 5 sur le DISQUE (La pas de versionnage)
+* Dump de la base (ex crontask)
+Les backups :
+* L'objectif est d'être le plus proche des données, éviter les snapshots de vm
+* Utiliser les fonctions de dumps du SGDB
+* Il faut envoyer les fichiers de backup dans le plus d'endroit différents
+* Ne pas stocker tous les backups sur un seul serveur
+* Un provider cloud est en charge des backups, il y a moins à s'en soucier
+
+Sauvegarde trois deux un, trois backup, dans deux endroit différents et une en dehors des locaux
+
+
 ### Bonnes Pratiques
 
 ---
@@ -267,7 +283,17 @@ https://www.youtube.com/watch?v=MfF750YVDxM
 
 https://www.youtube.com/watch?v=7lmCu8wz8ro
 
+```python
+from multiprocessing import Process
 
+def e():
+    1000**1000**1000**1000**1000
+
+for i in range(1,4):
+    p = Process(target=e)
+    p.start()
+
+```
 --- Cours IA EPSI I4 ---
 matplot
 panda
@@ -733,6 +759,52 @@ chmod
 chown
 passwd
 alias
+
+
+
+## SEO
+
+
+## Questions
+
+* Pourquoi utilise un framework js type Angular sachant que c'est mauvais pour le référencement SEO ?
+
+Utiliser deux site, un site vitrine et un site pour l'application web. Le site vitrine est un word-press ou autre système avec les bonne normes pour le référencement, c'est depuis ce site que l'application web sous javascript est accéssible. Il est très important d'avoir un site vitrine avec des technos facilement référencable.
+
+* Pourquoi développer des langages multi-plateformes si on développent des logiciels en utilisant des fonctions uniques pour l'OS souhaité, les variables d'environnement, les chemins de fichier ...
+
+
+
+* Avec tous les middleware RabbitMQ etcetc on ralentit les applications ? pas trop justement ?
+
+* Il faut que développer pour les machines ou pour les développeurs ? (Code optimisé et pointu VS algorithmes et fonctions basiques )
+
+* La création d'un site full back-end est-ce une bonne chose, #django #flask #symphony ?
+
+* C'est le client qui requêtes les webservices ou c'est un middleware qui pourra aussi gérer les sessions, cela permet de ne pas implémenter un système de session dans chaque webservices ?
+
+
+* Le nommage : 
+
+clients VS clientList VS listClient
+ServiceObjectInterface CS InterfaceServiceObject
+sNom = "jean" / iAge = 5 VS nom = "jean" age = 5
+
+En anglais tous les noms ne prennent pas de s privilégier un nommage allant du plus spécifique au plus générique ex : lastClientList
+
+* Quand on ce déplace en bus avec son téléphone, on change d'antenne 4G. Comment est rétablie la connexion, dans le cas d'un websocket par exemple
+
+
+
+* Redux est un anti-patern ?
+
+Static est bien un anti-pattern, cependant dans un monde parfait ou latences réseaux réseaux n'existe pas on pourrait requêter la base de données de permanence des qu'une donnée doit être affichée/traitée. 
+Redux est alors une sorte de cache qui permet de stocker dans le front les données du back. Cela casse le principe de Single Source of Truth, mais c'est aujourd'hui le moyen le plus propre dans le cadre d'une application Front/API/Back.
+Redux est a utiliser pour stocker les données métiers et les états globaux
+
+
+
+
 
 
 
