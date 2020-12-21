@@ -1,13 +1,14 @@
-###### auteur : Clément BARANGER	date : 16-07-2020
+# Some memo for IT
+> cbarange | 10th December 2020
+
+## Questions
+* Langage machine, Binaire, Executable
 
 ## Objectif
+> Installer, Configurer et Utiliser un environnement développement pour la production d'application web ou native dans un environnement Linux, (Ubuntu 18LTS).
 
-> Installer, Configurer et Utiliser un environnement développement pour la production d'application web dans un environnement Linux, (Ubuntu 18LTS).
-
-
-# Les Traitement
-
-# Les Données
+## Introduction
+En informatique il existe deux choses la **data** et la **logic**
 
 ## Les base de données
 Les performances des différentes solutions et usages
@@ -15,8 +16,6 @@ Les performances des différentes solutions et usages
 A quoi ça sert ?
 
 ---
-
-# Outils et Langages
 
 ## La programmation
 
@@ -38,12 +37,47 @@ polymorphism :  https://javarevisited.blogspot.com/2011/08/what-is-polymorphism-
 MultiTache
 Persistence
 
+## [Paradigme](https://www.youtube.com/watch?v=4Zc9ci9L5wY)
+  * Idempotent : "The same", Une opération appliquée plusieurs fois qui donne toujours le même résultat. eg : 1*1*1*1=1 & 1*1=1 est indempotent, array.push n'est pas indempotent mais set.add l'est. Pour une API Http GET PUT et DELETE doivent toujours être indempotent
+  * Ephemeral : opposite of persitent, un object est par défaut éphémaire car on peut le modifier, utiliser Object.freeze permet de le rendre Immutable
+  * Predicate : 
+  * Serialize : Encode un objet dans un format universel, texte ou binaire. L'objet pourra être récupérer par un autre système
+  * Memoization : Permet de mettre en cache le résultat d'opération
+  * Anonymous : Opération qui n'a pas de nom
+  * Abstraction : Permet de cacher les détails d'une implementation complexe
+
+## Algorithms et Complexité
+
+* Arbre / Arbre enraciné / Changer la racine d'un arbre
+* b tree
+* segment tree
+* fenwick tree
+* BFS
+* binary tree and reverse it
+* Range sum query
+* Range product query
+* Rabin Karp Rolling Hash
+* Polynomial Hashing
+* baby step giant step
+* Programmation dynamique recherche opérationnelle (prog dyn bottom up & prog dyn top down)
+* PD ProgDyn
+* backpack algorith
+* prefix tree 
+
+### Récursivité
+* Évaluation_paresseuse
+* Mémoïsation
+
+## Graphe
+
+* Graphe_hamiltonien
+* Graphe_eulérien
+* Graphe non orienté / Graphe orienté
 
 
 ## Shell
 
 / * TO DO * /
-
 
 ## Fail2Ban
 
@@ -71,6 +105,10 @@ Public IPs: 13.59.162.131
 Private IPs: 172.31.35.140
 ssh -i "aws_micro.pem" ubuntu@ec2-13-59-162-131.us-east-2.compute.amazonaws.com
 
+
+Déploiements Bleus / verts : https://www.youtube.com/watch?v=NxbDHn5ryc8
+Sécuriser l'utilisateur root : https://www.youtube.com/watch?v=29qidFrp0fs
+Le stockage S3 : https://www.youtube.com/watch?v=4RI3pDKpx38
 
 ---
 
@@ -236,6 +274,16 @@ Sauvegarde trois deux un, trois backup, dans deux endroit différents et une en 
 
 ## RedisDB
 
+```bash
+# Installation
+
+
+```
+
+```js
+```
+
+
 ## MongoDB
 https://www.youtube.com/watch?v=ZS_kXvOeQ5Y
 https://www.youtube.com/watch?v=pWbMrx5rVBE
@@ -252,6 +300,8 @@ https://www.youtube.com/watch?v=pWbMrx5rVBE
 
 ## SQL Server
 
+## HTTP
+
 ## HAProxy
 
 ## Apache
@@ -263,6 +313,49 @@ https://www.youtube.com/watch?v=MfF750YVDxM
 ## Nginx
 
 ## PostgREST
+
+## Programming Language
+
+**Some list of them :**
+* C++
+* Python 3
+* C
+* D
+* Bash
+* Dart
+* Perl
+* Go
+* Objective-C
+* Pascal
+* Rust
+* Java
+* Ruby
+* C#
+* Clojure
+* F#
+* Groovy
+* Haskell
+* JavaScript
+* Kotlin
+* Lua
+* OCaml
+* PHP
+* Scala
+* Swift
+* TypeScript
+* VB.NET
+* BrainFuck
+* Q#
+* Cobol
+* Erlang
+* Lisp
+* Elm
+* Fortan
+* Assembleur
+* Matlab
+* Lolcode
+* R
+* ...
 
 ## Python
 
@@ -515,8 +608,53 @@ https://www.youtube.com/watch?v=LIFZPzupwgs
 
 ## NodeJs
 
+**A Voir**
+* node fastify
+* ngrok
+
 https://openclassrooms.com/fr/courses/1056721-des-applications-ultra-rapides-avec-node-js
 https://www.youtube.com/watch?v=IwpBluLjynI
+```bash
+mkdir projectFolder
+cd projectFolder
+npm init
+npm install -s discord.js dotenv
+npm install -g nodemon
+nodemon index.js
+```
+```js
+require('dotenv').config();
+
+const Discord = require('discord.js');
+const client = new Discord.Client();
+
+client.on('ready', () => {
+    console.log(`Logged in as ${client.user.tag}!`);
+});
+
+let idOfAsignRole = "788221813264089119"
+let idOfRevokeRole = "788239285873934366"
+
+client.on('message', msg => {
+  // --- DEBUG ---
+  console.log("--- Liste des roles du server")
+  msg.guild.roles.cache.map(e=>console.log(`${e.name}:${e.id}`))// Show Existing role
+  /// --- === ---
+  if(msg.content.includes('fm!certify')){
+    let member=msg.mentions.members.first()
+    // Si pas de user mentionne quiter
+    if(!member) return msg.channel.send("Il manque le paramètre utilisateur")
+    let roleToAssign = msg.guild.roles.cache.find(e=>e.id==idOfAsignRole)
+    if(!roleToAssign) return msg.channel.send("Impossible de trouver le role")
+    let roleToRevoke = msg.guild.roles.cache.find(e=>e.id==idOfRevokeRole)
+    if(!roleToRevoke) return msg.channel.send("Impossible de trouver le role")
+    // --- Try to asign role ---
+    member.roles.add(roleToAssign)
+    member.roles.remove(roleToRevoke)
+  }
+});
+client.login(process.env.DISCORD_TOKEN);
+````
 
 
 
@@ -525,6 +663,31 @@ https://www.youtube.com/watch?v=IwpBluLjynI
 ## ReactJs
 
 ## AngularJs
+
+## [Flutter](https://flutter.dev/community)
+> [mobile, framework, dart, google, crossplatform]
+
+Flutter est un SDK pour le développer des applications crossplatforme, principalement Android & IOS mais aussi Linux, Mac, Windows et le web... Open-sourcé par Google en 2017 il se veut plus bas niveau que les SDK existant, ionic, react native, cordova, appcelerator...
+
+**Tools**
+* Android Studio
+* IntelliJ
+* VS Code
+* Dart DevTools
+* Codemagic by Nevercode
+* Flare by 2dimensions
+
+### Setup
+```bash
+sudo snap install flutter --classic
+flutter doctor
+```
+### Hello world !
+```bash
+```
+### Common Usage
+```bash
+```
 
 ## Electron
 
@@ -543,6 +706,18 @@ Editeur, Service
 merge, rebase, checkout, pull (request), fetch, status, push, commit, reset, revert, clone
 
 ## SSH
+
+```bash
+ssh-keygen Epsi2020!
+cat pubkey > ~/.ssh/authorized_keys
+sudo nano /etc/ssh/sshd_config
+# PublicKeyAuthentication yes
+# PasswordAuthentication no
+sudo service ssh restart
+sudo service sshd restart
+cat privkey #Don't forget the \n at end of the key
+sudo ssh -i ./k lwa@{IP} -p {PORT}
+```
 
 ## TMUX / Shell decorator
 
@@ -568,6 +743,71 @@ sudo apt install network-manager-openvpn-gnome
 ```
 
 ## Docker
+https://www.youtube.com/watch?v=8q0wcmeJ2Gk
+```bash
+# Dockerfile
+FROM debian
+MAINTAINER cbarange <cbarange@gmail.com>
+# Stage 1
+RUN apt-get update
+# Stage 2
+RUN apt-get install -y wget
+# Stage 3
+RUN apt-get install -y curl nginx 
+
+# ADD and COPY
+# ADD pathFromHost pathToGuest, ADD supporte aussi des url pour le chemin d'origine du fichier
+# COPY pathFromHost pathToGuest
+# Les paths est celui du Dockerfile
+ADD script.sh /usr/bin/script.sh
+RUN chmod 755 /usr/bin/script.sh
+# Open port in container
+EXPOSE 80
+
+# CMD and ENTRYPOINT
+# CMD : Peut etre surchagé quand on passe des arguments lors du lancement de l'image
+# ex : docker run --it ubuntu bash, ici bash surcharge l'instruction CMD
+# ENTRYPOINT : Ne peut pas être surchagé
+# ex : 
+# ENTRYPOINT ["wget"]
+# CMD ["--help"]
+# Pour changer le comportement de notre container
+# docker run -it --rm  image_name -drc URL
+# En combinant ENTRYPOINT et CMD, on peut passer des paramètres à une commande
+ENTRYPOINT ["scripts.sh"]
+#CMD ["script.sh"]
+# Le container doit être dans un état bloquant pour ne pas se couper, on desactive le mode deamon pour avoir une commande active dans la console du container
+#CMD ["nginx", "-g", "deamon off;"]
+
+# Map un dossier entre l'host et le container
+VOLUME /volume/data 
+
+# Variables d'environment
+ENV MYSQL_USER_PASSWORD superpassword!
+
+```
+
+```bash
+docker build -t pseudo/projectname:version path/to/Dockerfile
+# les RUN sont des "stages" des étapes, elles sont mises en cache et server de "snapshots" pour les futures évolutions de l'image
+# Si on supprime une commande RUN an haut du fichier, l'ensemble les stages suivants seront recréer sans utiliser le cache
+# On met en haut du docker file les packages standard qui n'évolurons pas, on gagne ainsi du temps lors du build 
+# C'est le fonctionnement de l'AUFS
+docker run --rm -it pseudo/projectname
+# --rm : Remove le container quand il s'arrete
+# -it : Affiche dans la console les sorties du container
+# -d : Mode détaché
+# -p : Map le port entre l'host et le container 
+# -v : Map un dossier ente l'host et le container
+# -e : Assigne des variables d'environment
+# ex : docker run -d -p 80:80 -e MYSQL_USER_PASSWORD=superNewpassword! -v /path/from/host:/path/to/container pseudo/projectname
+docker inspect containerID
+docker ps -a
+docker rm containerID
+docker exec -ti containerID command
+docker exec -ti containerID bash
+```
+
 
 ## Virtualisation
 
@@ -622,6 +862,8 @@ By using overflow-x, we can create scroll bars when the contents of this div are
 ```
 
 ## CSS
+
+Tailwind started kit : https://github.com/creativetimofficial/tailwind-starter-kit
 
 Boite scrollable, Dimension, Responsive ...
 Texte sur une image
@@ -699,6 +941,13 @@ https://www.ably.io/topic/websockets
 
 ## Javascript
 
+top 10 des librairies 2021 : https://medium.com/javascript-in-plain-english/top-10-most-popular-javascript-libraries-to-use-in-2021-5da60f187992
+
+programmation fonctionnel : https://www.youtube.com/watch?v=mW_nLYvXyKk
+programmation fonctionnel : https://www.youtube.com/watch?v=YZwilQqzdYA
+programmation fonctionnel : https://www.youtube.com/watch?v=-Cdt-1tWJ3M
+
+
 https://www.youtube.com/watch?v=Kp3HGwlXwCk
 ```js
 // L'objet / JSON qui stocke ke formulaire
@@ -735,9 +984,14 @@ https://ungeek.fr/le-petit-guide-du-chasseur-de-drapeaux/
 https://github.com/zardus/ctf-tools
 https://github.com/apsdehal/awesome-ctf#solve
 
+icpc programming contest
+icpc nwerk
+icpc swerc
 
-## Commande Line
 
+## Bash commands
+
+```bash
 cut
 ed
 ex
@@ -745,6 +999,11 @@ head
 join
 nl
 sed
+awk
+mount
+jq
+base64
+sha1 md5
 strings
 tee
 uniq
@@ -759,8 +1018,144 @@ chmod
 chown
 passwd
 alias
+sl # Look for
+xeyes
+```
+
+## REST API
+Sources :
+* https://atinux.developpez.com/tutoriels/javascript/mongodb-nodejs-mongoose/#LVII
+* https://hackernoon.com/goodbye-redux-26e6a27b3a0b
+* https://www.toptal.com/nodejs/secure-rest-api-in-nodejs
+* https://blog.logrocket.com/setting-up-a-restful-api-with-node-js-and-postgresql-d96d6fc892d8/
+* https://www.enterprisedb.com/postgres-tutorials/how-quickly-build-api-using-nodejs-postgresql
+
+## Pentest
+> [pentest, whitehat]
+
+### Network
+
+**Yersinia, framework for performing layer 2 attacks like a cisco hardware**
+```bash
+sudo apt install -y yersinia
+yersinia -G
+```
+
+## Miscellaneous
+
+### URL
+> [url, seo]
+
+Pour les requêtes la taille maximale de l'url est de 2 083 mais pour la SEO entre comptez entre 50 et 60 au maximum et pas plus de 3 à 5 mots, le reste est destiné à la machine.
+[doc google](https://chromium.googlesource.com/chromium/src/+/master/docs/security/url_display_guidelines/url_display_guidelines.md)
+
+### Base64
+> [base64]
+
+Base64 est généralement 33% plus long que sa valeur text/plain
+
+### Data URLs
+> [url, browser, data, base64]
+
+* Answer : https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
+
+**Example**
+* data:image/png;base64,{BASE64_PNG}
+* data:image/svg+xml;base64,PB94e...
+* data:,Hello%2C%20World!
+* data:text/html,%3Ch1%3EHello%2C%20World!%3C%2Fh1%3E
+* data:text/html,<script>alert('Hey !');</script>
+* [Example png](data:image/png;base64,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)
+
+Peut être utiliser dans l'attribut *href* d'un *svg*, dans l'attribut *src* d'une balise _img_, dans un url de navigateur mais attention la taille ne doit pas dépasser 32768 caractère pour l'affichage mais elle peut aller à plus de 100 000 sur certain navigateur [Wikipedia](https://en.wikipedia.org/wiki/Data_URI_scheme)
+
+### Indentation
+> [indentation, space, tab, 4, 2]
+
+https://stackoverflow.com/questions/7070927/is-it-safe-to-indent-with-2-spaces
+* Answer : `Use 2 spaces for indentation`
+
+### [Complexité algorithmique](https://fr.wikipedia.org/wiki/Analyse_de_la_complexit%C3%A9_des_algorithmes), [Big O notation](https://www.youtube.com/watch?v=g2o22C3CRfU)
+> [O(n), o notation, complexité, algorithms]
+
+On mesure deux complexités, celle de *temps* et celle d'*espace*, elles dépendent de la taille (N) de l'entré.
+* Temps : Quantité d'opérations, souvent CPU, nécessaire en fonction N
+* Espace : Quantité de mémoire, souvent RAM, nécessaire en fonction de N
+
+|N|1000|
+|:--|:--|
+|O(N)|1000|
+|O(log N)|3|
+|O(N²)|1 000 000|
+|O(2^N)|1e+301|
+|O(N!)|4e+2567|
+
+> Resource : [*The Art of Computer Programming*](https://fr.wikipedia.org/wiki/The_Art_of_Computer_Programming)
+
+### Securité
+Source:
+* https://confituregeek.wordpress.com/2016/01/27/securiser-une-api-rest-via-une-clef-dapi/
+* https://www.redhat.com/fr/topics/security/api-security
+* https://blog.octo.com/securiser-une-api-rest-tout-ce-quil-faut-savoir/
+* https://www.codeheroes.fr/2018/03/23/securiser-une-api-rest/#:~:text=On%20a%20vu%20tout%20au,pour%20l'authentification%20des%20utilisateurs.
+
+Mettre en place une api Rest est une chose, la sécuriser en est un autre.
+
+**Login**
+
+Pour chaque requete le user envoie en paramètre son username et mot de passe. Cette méthode est très vulnérable attaque man in middle et pour chaque requete c'est le même couple username/mot de passe qui est utilisé.  
+
+**Token**
+
+Apres l'authentification avec son username et mot de passe le client reçoit un token qui sera réutilisé pour toute les autres requetes, ce token à une durée de vie limité. C'est le fonctionnemen de "JWT REST". Mais cette solution est toujours vulnerable au vol du token.
+
+**La clef d’api**
+
+On ajoute à chaque requête une signature, un secret est utilisé pour générer un hash : Signature = base64(HMAC-SHA1(requête, motdepasse)). On peut ajouter un timestamp pour limiter la durée de vie de cette signature, Put http://monsitedevoiture/voitures/123&signature=hizuefguzefu123&timestamp=1234567890  {user=toto ; prix=15000}
+
+### P vs NP Problem, [P=NP](https://www.youtube.com/watch?v=AgtOCNCejQ8)
+> [P vs NP Problem ,p=np, 7 millennium problems, ] 
+
+> P=NP fait parti des 7 problèmes mathématiques du millénaire. Cette équation décrit la complexité des algorithms.
 
 
+
+
+## Références
+
+### Algo
+
+* `LIVRE` Programmation Efficace Les 128 Algorithmes Qu'il faut avoir compris
+* `SITE` france ioi
+* `SITE` code forces
+* `SITE` CP-Algorithms
+* `SITE` coding-game
+* `SITE` Isogard
+* `LIVRE` Introduction to algorithms (Cormen)
+* `LIVRE` Algorithm Design
+* `LIVRE` Le mythe de la singularité, faut il craindre l'intelligence artificielle de Jean-Gabriel Ganascia
+
+### Conception
+
+* `LIVRE` Le Mom Test: Comment parler avec les clients et apprendre si votre idée d'entreprise est bonne, quand tout le monde vous ment 
+
+
+
+#### Entretient
+
+* Combien d'espace est utilisé pour l'indentation ?
+* Changer la couleur des lignes impaire d'un tableau
+* Montrer moi comment vous afficher une informations standard, (eg : print, printf, console.log, echo, System.out.print...)
+* Mob programming | Pair programming ?
+
+
+```
+Une stack technique moderne. 
+La volonté de répondre à un vrai besoin, d'apporter de la valeur & de résoudre des problèmes 😃. 
+Etre entouré de personnes compétentes aussi bien dans la technique que dans la conception, l'analyse et l'humain👏.
+
+Et surtout surtout apprendre un max 😎 !
+```
 
 ## SEO
 
