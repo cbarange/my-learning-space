@@ -1,21 +1,113 @@
 # Some memo for IT
 > cbarange | 10th December 2020
 
+## TODO
+* json ld
+* ocaml language
+* Qubes-os pop-os 
+* knapsack algorithm
+* Typescript GraphQL TypeGraphQL TypeORM PostgreSQL React Appollo
+* NuxtJs tailwindcss 
+* Théorie des graphes Grammaire Langages naturels Machine a état Algo déterministe en temps fini ou np complet 
+* Multi Tenant Infra as code Moteurs de regles Extrem Programming & Lean software development contrat d'interface
+* Mimio container
+* Event sourcing
+* Apache Pulsar
+* X++
+* ionic capacitor
+* ACID Database
+* Python Theano
+* Pghash python  Jwt lié à oidc  Felium map python
+* Geohash python
+* Open Connect : CDN (Content Delivery Network)
+* ionic Bootstrap jquery
+* CORS Origin
+* CPA Database theorem
+* InfluxDB
+* SOLID principe
+* Peer to Peer
+* NESTJS socket io / websocket webRTC NAT / PAT sveltejs ws module websocket de node fastify js redux js parcel js/node/webpack
+* Programmation Système :  fork pid ppid process pipe ... (En C et en Python)
+* XML XLLT
+* Redux
+* CodistAI
+* samba vs nfs
+* extension rust & js pour postgresql
+* Javascript / TypeScript, HTML5 / CSS3, SASS / LESS, Animation JS, Canvas et SVG, Frameworks Angular, React, Bootstrap NodeJS
+* FAIRE UN REGROUPEMENT DES TECHNOS SUIVANT LES OFFRES D'EMPLOIE (faire des bundles de techno, angular+java react+php ...)
+* KeepAliveD
+* repMGR
+* (reverse software) Gidhra & Radare2)
+* shodan et shodan.io
+* Grafana + NodeJS et Rsyslog et InfluxDB LDAP SAO
+* pfsense packettracer
+* webhooks
+* Python Django Pyramid Web2Py
+* Kafka K8S
+* programmation impérative | fonctionnelle | object | reactive
+* Quasar Stormbase
+* koa. js swagger io / open api 
+* loopback io JWT
+* micro données seo
+* google search console
+* dashline
+* Firebase
+* Ember.js
+* sass language
+* CLIP OS   Distribution Linux Gentoo
+* tween Lo-dash
+* iam software
+* Vue Materialisée database
+* logstash rabbitmq
+* assembleur
+* jq.node
+* 3djs svg / svg dynamic
+* nginx/openresty
+* istio proxy
+* postrest subzero postgraphql prisma
+* Prometeus
+* Helm et Gitlab CI
+* laravel
+* p5.js
+
 ## Questions
 * Langage machine, Binaire, Executable
+* Pourquoi utilise un framework js type Angular sachant que c'est mauvais pour le référencement SEO ?
+  * Utiliser deux site, un site vitrine et un site pour l'application web. Le site vitrine est un word-press ou autre système avec les bonne normes pour le référencement, c'est depuis ce site que l'application web sous javascript est accéssible. Il est très important d'avoir un site vitrine avec des technos facilement référencable.
+* Pourquoi développer des langages multi-plateformes si on développent des logiciels en utilisant des fonctions uniques pour l'OS souhaité, les variables d'environnement, les chemins de fichier ...
+* Avec tous les middleware RabbitMQ etcetc on ralentit les applications ? pas trop justement ?
+* Il faut que développer pour les machines ou pour les développeurs ? (Code optimisé et pointu VS algorithmes et fonctions basiques )
+* La création d'un site full back-end est-ce une bonne chose, #django #flask #symphony ?
+* C'est le client qui requêtes les webservices ou c'est un middleware qui pourra aussi gérer les sessions, cela permet de ne pas implémenter un système de session dans chaque webservices ?
+* Le nommage : 
+  * clients VS clientList VS listClient
+  * ServiceObjectInterface CS InterfaceServiceObject
+  * sNom = "jean" / iAge = 5 VS nom = "jean" age = 5
+    * En anglais tous les noms ne prennent pas de s privilégier un nommage allant du plus spécifique au plus générique ex : lastClientList
+* Quand on ce déplace en bus avec son téléphone, on change d'antenne 4G. Comment est rétablie la connexion, dans le cas d'un websocket par exemple
+* Redux est un anti-patern ?
+  * Static est bien un anti-pattern, cependant dans un monde parfait ou latences réseaux réseaux n'existe pas on pourrait requêter la base de données de permanence des qu'une donnée doit être affichée/traitée. 
+  * Redux est alors une sorte de cache qui permet de stocker dans le front les données du back. Cela casse le principe de Single Source of Truth, mais c'est aujourd'hui le moyen le plus propre dans le cadre d'une application Front/API/Back.
+  * Redux est a utiliser pour stocker les données métiers et les états globaux
+
 
 ## Objectif
-> Installer, Configurer et Utiliser un environnement développement pour la production d'application web ou native dans un environnement Linux, (Ubuntu 18LTS).
+> Installer, Configurer et Utiliser un environnement développement pour la production d'application web ou native dans un environnement Linux
 
-## Introduction
-En informatique il existe deux choses la **data** et la **logic**
+## Quelques Principes
 
-## Les base de données
-Les performances des différentes solutions et usages
-/ * TO DO * /
-A quoi ça sert ?
+* En informatique il existe deux choses la **data** et la **logic**
+* Tous limiter dans le temps et l'espace
+* Une seule source de vérité
+* Responsabilité minimale
 
----
+## [Nice to Have](https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA)
+
+Paradigme
+> fonctionnelle procédurale orientée-objet onpromise cloud serverless proxy loadbalancer message-queuing(AMQP) S3 Progressive-Web-Apps(PWA) server-side-rendering container pagination CI/CD REST-API IAM
+
+Tech
+> tcp socket http Cookie Token websocket webRTC regex SQL git OAuth Json Nodejs
 
 ## La programmation
 
@@ -45,6 +137,55 @@ Persistence
   * Memoization : Permet de mettre en cache le résultat d'opération
   * Anonymous : Opération qui n'a pas de nom
   * Abstraction : Permet de cacher les détails d'une implementation complexe
+
+
+## Programming Language
+
+**Some list of them :**
+* C++
+* Python 3
+* C
+* D
+* Bash
+* Dart
+* Perl
+* Go
+* Objective-C
+* Pascal
+* Rust
+* Java
+* Ruby
+* C#
+* Clojure
+* F#
+* Groovy
+* Haskell
+* Haxe
+* Delphi
+* Crystal
+* 1C
+* Ada
+* JavaScript
+* Kotlin
+* Lua
+* OCaml
+* PHP
+* Scala
+* Swift
+* TypeScript
+* VB.NET
+* BrainFuck
+* Q#
+* Cobol
+* Erlang & Elexir
+* Lisp
+* Elm
+* Fortan
+* Assembleur
+* Matlab
+* Lolcode
+* R
+* ...
 
 ## Algorithms et Complexité
 
@@ -110,27 +251,82 @@ Déploiements Bleus / verts : https://www.youtube.com/watch?v=NxbDHn5ryc8
 Sécuriser l'utilisateur root : https://www.youtube.com/watch?v=29qidFrp0fs
 Le stockage S3 : https://www.youtube.com/watch?v=4RI3pDKpx38
 
----
+
+# DataBase
+
+## Databse Paradigme
+
+|Paradigme|Systeme|Description|
+|:--|:--|:--|
+|Relational|MySQL/MariaDB PostgreSQL SQL-Server Oracle| Provide ACID compliant|
+|Document|MongoDB CouchDB FireBase|Schema-less|
+|Key Value|Redis Memcached DynamoDB|RAM storage|
+|Graph|neo4j|High coupling data|
+|Wide-Column|HBase Cassandra||
+|Timeseries|Influxdb||
+|Search|Elasticsearch MeiliSearch||
+|Multi-Model|Fauna||
+
+
+## SQL & Relational Model
+
+**Constraint**
+
+|Constraint| Description|
+|:--|:--|
+|UNIQUE|This ensures that every record in your database has a unique value for the field that is set to unique. For example, you might want every user to have a unique email address. It is important to note that Postgres is case sensitive, so jon@CALHOUN.io is not the same as jon@calhoun.io. You will need to account for this on your own when writing data to your database.|
+|NOT NULL|This ensure that every record in your database has a value for this field. When you don’t provide a value for a field the database will traditionally store null, but this prevents that from being valid.|
+|PRIMARY KEY|This constraint is similar to combining both UNIQUE and NOT NULL but it can only be used once on each table, and it will automatically result in a the creation of an index for this field. The index is used to make it faster to look up records by this field.|
+
+**File**
+
+|File|Desciption|
+|:--|:--|
+|DDL||
+|DML||
+|DCL||
 
 
 ## PostgreSQL
+> database postgresql sgbdr
 
-PostgreSQL est un système de gestion de bases de données (SGBD) très performant sous licence BSD dont les performances sont comparables à Oracle 9. 
+**ref**
 
-Il propose de très nombreuses fonctionnalités, tout en respectant les standards SQL : SQL 92, 99 et en partie la norme SQL2003. En outre, il intègre plusieurs langages embarqués (Perl, Python, Java, JavaScript et Rust) depuis de nombreuses années.
+* https://www.postgresql.org/ https://www.postgresql.fr/
 
-https://www.postgresql.org/
-https://www.postgresql.fr/
+PostgreSQL : Système de gestion de bases de données relationelle (SGBD) très performant sous licence BSD=gratuit avec des performances comparables à Oracle. Il propose beaucoup de fonctionnalitées et intègre plusieurs langages embarqués Perl, Python, Java, JavaScript et Rust.
+
+**Types principaux**
+
+|Types principaux|Desciption|
+|:--|:--|
+|INT|Integers between -2147483648 and 2147483647|
+|SERIAL|Integers between 1 and 2147483647. Serial automatically set a value if you don’t provide one, value increase by 1|
+|VARCHAR(n) VARYING(n)|String with max length as n|
+|TEXT|String unlimited length|
+|CHARACTER(n) CHAR(n)|String with fixed length at n|
+|DATE TIMESTAMP TIME||
+|BOOLEAN||
+|DOMAIN||
+|ENUM||
+|JSON||
+|GIS||
 
 ### Installation & Setup
 
 ```bash
-sudo apt update && sudo apt upgrade -y # L'option -y valide la demande de validation de l'installation, ce n'est pas une option obligatoire
+sudo apt update && sudo apt upgrade -y
+# Official repo
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
 sudo apt install postgresql postgresql-contrib -y # Un nouvel utilisateur est crée pendant l'installation
-sudo apt install finger # Finger est un outil pour afficher les détails d'un utilisateur
-finger postgres # Affichage des attributs de l'utilisateur postgres
 less /etc/passwd # Attention l'utilisateur postgres possède une shell, il faut le sécuriser
-sudo passwd postgres # Définition du mot de passe, patate
+sudo passwd postgres # Définition du mot de passe
+service postgresql status
+sudo service postgresql start
+sudo -u postgres psql --version
+
 # Seul le nouvel utilisateur postgres a accés à l'interface de postgreSQL, pour ce connecter à l'interface il faut saisir une des commandes suivantes 
 sudo -i -u postgres # -i Permet de charger un shell avec les variables spécifiques a l'utilisateur, $HOME, fichiers .profile et .login au users spécifié par l'option -u
 psql # Lancement de l'interface postgreSQL 
@@ -147,130 +343,24 @@ psql --version
 # L'interface PSQL nous permet d'intéragir avec les base de données via des requêtes SQL et le paramètrage de postgreSQL, un utilitaire nommé PgAdmin4 fait la même chose mais depuis l'interface graphique d'un navigateur web
 \l # Permet de lister les bases de données
 SELECT version(); # Affiche la version
+```
 
+```sql
 
+```
 
-drop database if exists DBNAME;
-create database DBNAME;
-\c DBNAME;
-drop schema if exists SCHEMANAME;
-create schema SCHEMANAME;
-
-CREATE USER ps_admin WITH encrypted PASSWORD 'EPSI_2020';
-GRANT ALL privileges ON database mspr_prestashop to ps_admin;
-GRANT ALL privileges on SCHEMA mspr TO ps_admin;
-GRANT ALL privileges ON ALL TABLES IN SCHEMA mspr TO ps_admin;
-GRANT USAGE ON ALL SEQUENCES IN SCHEMA mspr TO ps_admin;
-
-drop table if exists mspr.user;
-CREATE TABLE mspr.user(
-   -- user_id SERIAL PRIMARY KEY,
-   user_id integer PRIMARY KEY,
-   email VARCHAR (355) NOT NULL,
-   passwd VARCHAR (355) NOT NULL
-);
-
--- alter table mspr.user  ALTER COLUMN passwd TYPE varchar(355);
-\d mspr.user
-delete from mspr.user;
-insert into mspr.user(user_id, email,passwd) values (0,'email@email.fr','$2a$10$gt/8moSeQUxRsy13qbeE4edMnfbhKxIkSDB5NzYkY4BFz12KLn/MS');
-select * from mspr.user;
-
-create extension if not exists "uuid-ossp";
-
-drop table if exists mspr.coupon;
-CREATE TABLE  mspr.coupon(
-	coupon_id UUID NOT NULL DEFAULT uuid_generate_v4(), 
-   	product_id integer NOT NULL,
-   	value integer NOT NULL,
-   	start_date date not null,
-   	end_date date not null,
-   	message varchar(355) not null,
-   	description varchar(355) not null,
-   	CONSTRAINT PK_COUPON PRIMARY KEY(coupon_id)
-);
-delete from mspr.coupon;
-insert into mspr.coupon(product_id,value,start_date,end_date,message,description) values(1,25,'01/01/2020','01/01/2021','REDUC','Utiliser ce coupon sur l article carnet de note en liege');
-insert into mspr.coupon(product_id,value,start_date,end_date,message,description) values(2,5,'01/01/2020','01/01/2021','PAPER','Utiliser ce coupon sur l article carnet de note en carton');
-insert into mspr.coupon(product_id,value,start_date,end_date,message,description) values(3,3,'01/01/2020','01/01/2021','PAPER','Utiliser ce coupon sur l article carnet de note en papier');
-insert into mspr.coupon(product_id,value,start_date,end_date,message,description) values(4,2,'01/01/2020','01/01/2021','TOPCADOC','Utiliser ce coupon sur l article carnet de note en tissu');
-insert into mspr.coupon(product_id,value,start_date,end_date,message,description) values(5,0.50,'01/01/2020','01/01/2021','FOXY','Utiliser ce coupon sur l article fox');
-select * from mspr.coupon;
-
--- --------------------------
--- --- CREATE TABLE ADMIN ---
--- ---                    ---
-drop table if exists mspr.admin;
-CREATE TABLE mspr.admin(
-   admin_id UUID NOT NULL DEFAULT uuid_generate_v4(), 
-   email VARCHAR (355) NOT NULL,
-   passwd VARCHAR (355) NOT NULL,
-   CONSTRAINT PK_ADMIN PRIMARY KEY(admin_id)
-);
-
-\d mspr.admin
-insert into mspr.admin(email,passwd) values ('email@email.fr','password');
-insert into mspr.admin(email,passwd) values ('admin@email.fr','$2y$10$ehWoifyiW1tKUIgMZA9fmOLkOHpGw9oTniXkVlrTs889IY0LR58Uq');
-insert into mspr.admin(email,passwd) values ('test@test.fr','$2a$10$gt/8moSeQUxRsy13qbeE4edMnfbhKxIkSDB5NzYkY4BFz12KLn/MS');
-
--- -------------------------------
--- --- CREATE TABLE HISTORIQUE ---
--- ---                         ---
-drop table if exists mspr.historique;
-CREATE TABLE mspr.historique(
-   id UUID NOT NULL DEFAULT uuid_generate_v4(), 
-   _date date null default CURRENT_DATE,
-   coupon UUID not null,
-   user integer null,
-   CONSTRAINT PK_HISTORIQUE PRIMARY KEY(id)
-);
-\d mspr.historique
-insert into mspr.historique(email,passwd) values ('email@email.fr','password');
+```bash
 
 ```
 
 
-### Premiers Pas
+### Création de la base de données
 
 
 
-### Usages Avancés
 
-Backup, plan de backup dump import, import mariadb, oracle etc etc...
-
-Comment securiser l'utilisateur postgres apres l'installation de postgreSQL , acces que local a l'utilisateur ?
-
-La backup d'une base de données se fait avec
-* SnapShoot de la VM
-* Backup de la VM
-* Backup du disque
-* RAID 5 sur le DISQUE (La pas de versionnage)
-* Dump de la base (ex crontask)
-Les backups :
-* L'objectif est d'être le plus proche des données, éviter les snapshots de vm
-* Utiliser les fonctions de dumps du SGDB
-* Il faut envoyer les fichiers de backup dans le plus d'endroit différents
-* Ne pas stocker tous les backups sur un seul serveur
-* Un provider cloud est en charge des backups, il y a moins à s'en soucier
-
-Sauvegarde trois deux un, trois backup, dans deux endroit différents et une en dehors des locaux
-
-
-### Bonnes Pratiques
-
----
 
 ## MariaDB
-
-### Installation & Setup
-
-### Premiers Pas
-
-### Usages Avancés
-
-### Bonnes Pratiques
-
---- 
 
 ## RedisDB
 
@@ -299,63 +389,6 @@ https://www.youtube.com/watch?v=pWbMrx5rVBE
 ## OracleDB
 
 ## SQL Server
-
-## HTTP
-
-## HAProxy
-
-## Apache
-
-## Hadoop
-
-https://www.youtube.com/watch?v=MfF750YVDxM
-
-## Nginx
-
-## PostgREST
-
-## Programming Language
-
-**Some list of them :**
-* C++
-* Python 3
-* C
-* D
-* Bash
-* Dart
-* Perl
-* Go
-* Objective-C
-* Pascal
-* Rust
-* Java
-* Ruby
-* C#
-* Clojure
-* F#
-* Groovy
-* Haskell
-* JavaScript
-* Kotlin
-* Lua
-* OCaml
-* PHP
-* Scala
-* Swift
-* TypeScript
-* VB.NET
-* BrainFuck
-* Q#
-* Cobol
-* Erlang
-* Lisp
-* Elm
-* Fortan
-* Assembleur
-* Matlab
-* Lolcode
-* R
-* ...
 
 ## Python
 
@@ -606,7 +639,7 @@ https://www.youtube.com/watch?v=LIFZPzupwgs
 
 ## VBA
 
-## NodeJs
+## Nodejs
 
 **A Voir**
 * node fastify
@@ -698,6 +731,20 @@ flutter doctor
 ## Python_mod
 
 ## Python_CGI
+
+## HTTP
+
+## HAProxy
+
+## Apache
+
+## Hadoop
+
+https://www.youtube.com/watch?v=MfF750YVDxM
+
+## Nginx
+
+## PostgREST
 
 ## Git
 
@@ -1158,48 +1205,5 @@ Et surtout surtout apprendre un max 😎 !
 ```
 
 ## SEO
-
-
-## Questions
-
-* Pourquoi utilise un framework js type Angular sachant que c'est mauvais pour le référencement SEO ?
-
-Utiliser deux site, un site vitrine et un site pour l'application web. Le site vitrine est un word-press ou autre système avec les bonne normes pour le référencement, c'est depuis ce site que l'application web sous javascript est accéssible. Il est très important d'avoir un site vitrine avec des technos facilement référencable.
-
-* Pourquoi développer des langages multi-plateformes si on développent des logiciels en utilisant des fonctions uniques pour l'OS souhaité, les variables d'environnement, les chemins de fichier ...
-
-
-
-* Avec tous les middleware RabbitMQ etcetc on ralentit les applications ? pas trop justement ?
-
-* Il faut que développer pour les machines ou pour les développeurs ? (Code optimisé et pointu VS algorithmes et fonctions basiques )
-
-* La création d'un site full back-end est-ce une bonne chose, #django #flask #symphony ?
-
-* C'est le client qui requêtes les webservices ou c'est un middleware qui pourra aussi gérer les sessions, cela permet de ne pas implémenter un système de session dans chaque webservices ?
-
-
-* Le nommage : 
-
-clients VS clientList VS listClient
-ServiceObjectInterface CS InterfaceServiceObject
-sNom = "jean" / iAge = 5 VS nom = "jean" age = 5
-
-En anglais tous les noms ne prennent pas de s privilégier un nommage allant du plus spécifique au plus générique ex : lastClientList
-
-* Quand on ce déplace en bus avec son téléphone, on change d'antenne 4G. Comment est rétablie la connexion, dans le cas d'un websocket par exemple
-
-
-
-* Redux est un anti-patern ?
-
-Static est bien un anti-pattern, cependant dans un monde parfait ou latences réseaux réseaux n'existe pas on pourrait requêter la base de données de permanence des qu'une donnée doit être affichée/traitée. 
-Redux est alors une sorte de cache qui permet de stocker dans le front les données du back. Cela casse le principe de Single Source of Truth, mais c'est aujourd'hui le moyen le plus propre dans le cadre d'une application Front/API/Back.
-Redux est a utiliser pour stocker les données métiers et les états globaux
-
-
-
-
-
 
 
