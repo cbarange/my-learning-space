@@ -113,6 +113,7 @@ Tech
 
 Functionnel
 Orienté objet
+[Structure de données](https://fr.wikipedia.org/wiki/Structure_de_donn%C3%A9es)
 Concaténation et Substitutions avec string, (String format, etcetc)
 Design Patterns
   https://www.youtube.com/watch?v=zlg4jCY2g4o
@@ -251,6 +252,17 @@ Déploiements Bleus / verts : https://www.youtube.com/watch?v=NxbDHn5ryc8
 Sécuriser l'utilisateur root : https://www.youtube.com/watch?v=29qidFrp0fs
 Le stockage S3 : https://www.youtube.com/watch?v=4RI3pDKpx38
 
+# Modélisation
+
+## [UML](https://i.stack.imgur.com/tc9E4.png)
+
+## Merise
+
+## Personas
+
+## Methode APTE
+
+
 
 # DataBase
 
@@ -286,13 +298,12 @@ Le stockage S3 : https://www.youtube.com/watch?v=4RI3pDKpx38
 |DML||
 |DCL||
 
-
+---
 ## PostgreSQL
 > database postgresql sgbdr
 
 **ref**
-
-* https://www.postgresql.org/ https://www.postgresql.fr/
+* https://www.postgresql.org/ https://www.postgresql.fr/ https://www.linkedin.com/learning/decouvrir-postgresql
 
 PostgreSQL : Système de gestion de bases de données relationelle (SGBD) très performant sous licence BSD=gratuit avec des performances comparables à Oracle. Il propose beaucoup de fonctionnalitées et intègre plusieurs langages embarqués Perl, Python, Java, JavaScript et Rust.
 
@@ -312,21 +323,29 @@ PostgreSQL : Système de gestion de bases de données relationelle (SGBD) très 
 |JSON||
 |GIS||
 
-### Installation & Setup
+### Installation
 
+#### Serveur
 ```bash
 sudo apt update && sudo apt upgrade -y
-# Official repo
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo apt-get update
 sudo apt install postgresql postgresql-contrib -y # Un nouvel utilisateur est crée pendant l'installation
-less /etc/passwd # Attention l'utilisateur postgres possède une shell, il faut le sécuriser
-sudo passwd postgres # Définition du mot de passe
+
 service postgresql status
 sudo service postgresql start
 sudo -u postgres psql --version
 
+# More
+less /etc/passwd # Attention l'utilisateur postgres possède une shell, il faut le sécuriser
+sudo passwd postgres # Définition du mot de passe
+```
+
+#### Client
+**PLSQL**
+```bash
+sudo apt install -y postgresql-client
 # Seul le nouvel utilisateur postgres a accés à l'interface de postgreSQL, pour ce connecter à l'interface il faut saisir une des commandes suivantes 
 sudo -i -u postgres # -i Permet de charger un shell avec les variables spécifiques a l'utilisateur, $HOME, fichiers .profile et .login au users spécifié par l'option -u
 psql # Lancement de l'interface postgreSQL 
@@ -345,19 +364,39 @@ psql --version
 SELECT version(); # Affiche la version
 ```
 
-```sql
+**PGADIM**
+```bash
 
 ```
 
+## Best Patrices
 ```bash
 
 ```
 
 
-### Création de la base de données
+## Create database
+```bash
+
+```
+
+## Manage database
+```bash
+
+```
 
 
+## Use master slaves cluster
 
+```bash
+
+```
+
+## Use multi masters cluster
+
+```bash
+
+```
 
 
 ## MariaDB
@@ -752,6 +791,21 @@ Gitlab, Github, Bitbucket (altasian)
 Editeur, Service
 merge, rebase, checkout, pull (request), fetch, status, push, commit, reset, revert, clone
 
+Git
+- Commit
+- Pusher
+- Puller
+- Je sais fetch !
+- Je sais checkout
+- Je sais créér une branche
+- Je sais merger une branche
+- Je sais rebaser
+<<<<<<< HEAD
+- Je sais faire trop de truc
+=======
+- C'est bientôt terminé
+>>>>>>> ed9d2f2a210634a48833800b50550837a17bf6d4
+
 ## SSH
 
 ```bash
@@ -789,6 +843,66 @@ scp -i "publickey.pem" user@host:/home/user/client.ovpn ./client.ovpn
 sudo apt install network-manager-openvpn-gnome
 ```
 
+## Linux & Unix
+
+Quelques packages
+microk8s
+wekan
+docker
+mosquitto
+etcd
+stress-ng
+aws-cli
+google-cloud-sdk
+doctl
+heroku
+postgresql10
+keepalived
+prometheus
+net-tools
+git-all
+
+---
+## Virtualisation
+
+Il existe plusieurs logiciels qui vous permettent d'éxécuter un ou plusieurs systèmes d'exploitations à l'intérieur du votre. Différent du **dual-boot** qui vous permet d'avoir plusieurs systèmes d'exploitations sur votre ordinateur, la virtualisation fonctionne avec des logiciels (*eg vmware virtualbox hyper-v*). Ces logiciels bien que performant diminuent les performances des machines virtualisées de 5 à 30% pour certains usages. 
+
+### Clone
+
+Cloner une machine permet de gagner du temps, vous configurez une fois votre machine idéale et la répliquez autant de fois que nécessaire. Mais attention si votre objectif est de créer des dixaines de machines vous devez plutot utiliser une système de gestion de configuration (*eg puppet ansible*). En effet apres avoir cloné une machine il reste quelques actions à faire et la maintenance de toutes ces machines est très couteuse, c'est pour cela que les outils de gestion de configuration existent. Ils peuvent gérer les évolutions de l'infrastructure peu importe le nombre de machines. Cloner une machine virtuelle est cependant intéressant à petite échelle. 
+
+Après avoir cloné votre machine voici les actions à réaliser : 
+* Pour un environment DOS exécuter simplement 
+  ```batch
+  C:\Windows\System32\sysprep\sysprep.exe /oobe /generalize /shutdown
+  ```
+* Pour une machine UNIX voici les étapes,
+  
+  **hostname**
+  ```bash
+  sudo hostnamectl set-hostname u20serverworker1
+  sudo nano /etc/hosts # 127.0.0.1 u20serverworker1
+  sudo sed 's/preserve_hostname: false/preserve_hostname: true/' /etc/cloud/cloud.cfg
+  sudo reboot # reboot permet de réinitialiser la variable P1
+  # ne pas le faire entraine un ralentissement important de la commande sudo
+  ```
+  **ip address**
+  ```bash
+  ip a
+  ```
+  **unique machine id**
+  ```bash
+  cat /etc/machine-id 
+  sudo rm /etc/machine-id
+  sudo systemd-machine-id-setup
+```
+
+---
+## Conteneurisation
+
+Complémentaire à la virtualisation les conteneurs permettent d'isoler des applications sous la forme de package intégrant toutes les dépendances. Les permiers systèmes de conteneurs sont apparus peu avant 2010, mais c'est en 2015 avec la norme OCI *Open Container Initiative* et le soutien des entreprises que leur utilisation a explosé. Ces packages sont téléchargables et exécutables sans que la machine hôte possède les dépendances. Les logiciels de conteneur (*eg docker podman LXC*) allouent des ressources à chaque conteneur *systèmes de fichiers, réseau, processeur, mémoire vive ...* cela permet l'isolation entre le système d'exploitation et les autres conteneurs. Ainsi un conteneurs utilise directement les ressources de l'ordinateur sans aucunes pertes de performances. Très utiliser dans le cloud les conteneurs sont souvent moins cher en maintenance qu'un VPS. Les cloud-provider (*eg GoogleCloud AmazonWebService MicrosoftAzure DigitalOcean ScaleWay*) propose des solutions pour déployer, exécuter, manipuler, monitorer, **orchestrer**... vos conteneurs (*eg google_kubernetes_engine amazon_EKS aws_lambda*)
+
+---
 ## Docker
 https://www.youtube.com/watch?v=8q0wcmeJ2Gk
 ```bash
@@ -855,8 +969,6 @@ docker exec -ti containerID command
 docker exec -ti containerID bash
 ```
 
-
-## Virtualisation
 
 ## Grafana
 
