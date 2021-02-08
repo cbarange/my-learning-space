@@ -116,6 +116,7 @@ Orienté objet
 [Structure de données](https://fr.wikipedia.org/wiki/Structure_de_donn%C3%A9es)
 Concaténation et Substitutions avec string, (String format, etcetc)
 Design Patterns
+  https://ravindraelicherla.medium.com/10-design-patterns-every-software-architect-must-know-b33237bc01c2
   https://www.youtube.com/watch?v=zlg4jCY2g4o
   https://www.youtube.com/watch?v=NjhUK68rzCs
   https://www.youtube.com/watch?v=agkWYPUcLpg
@@ -428,6 +429,8 @@ https://www.youtube.com/watch?v=pWbMrx5rVBE
 ## OracleDB
 
 ## SQL Server
+
+# Programming languages
 
 ## Python
 
@@ -1000,6 +1003,16 @@ docker exec -ti containerID bash
 
 ## Kubernetes
 
+## [PWA Progrssive Web App](https://medium.com/james-johnson/a-simple-progressive-web-app-tutorial-f9708e5f2605)
+
+## [Micro Service Architecture](https://medium.com/swlh/building-javascript-microservices-with-node-js-d88bf0bb2b92)
+
+* Objectif : Réduire la **taille** et la **complexité** de votre application. 
+* Comment ? : Utiliser un **système distribué** pour passer d'une monolithe à de petites applications **indépendantes**
+* Quelques avantages : modulaire, uniforme, Robuste, Maintenable, Scalable, Disponible, Testable
+* Remarque : Aujourd'hui l'immense majorité des architectures micro services sont basées sur le protocole HTTP.
+
+
 ## Open Api / Swagger
 https://www.youtube.com/watch?v=N_jQcjqEJN8&list=PLwF40GVCw5Zq4IZ5HYzd428pL-pM8Fym9&index=142&t=0s
 https://www.youtube.com/watch?v=0FQ6w4CO5Nw
@@ -1316,6 +1329,6 @@ Etre entouré de personnes compétentes aussi bien dans la technique que dans la
 Et surtout surtout apprendre un max 😎 !
 ```
 
-## SEO
+## [SEO](https://www.youtube.com/watch?v=-B58GgsehKQ)
 
 
