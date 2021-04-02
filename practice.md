@@ -322,51 +322,36 @@ print(str(sum(d)-max(d)>=max(d)).lower())
 ### Math Plan Equation 
 > lvl2 algo codingame clashofcode reverse
 * **EXAMPLE**
-	* IN
+  * IN
 ```
 1 2
 3 5
 ```
-	* OUT 
+  * OUT
 ```
 2 3.5
 ```
-	* IN
+  * IN
 ```
 0 0
 10 10
 ```
-	* OUT 
+  * OUT
 ```
 5 5
 ```
-	* IN
+  * IN
+
 ```
- -7 42
-42 -7
+-99 -99
+99 99
 ```
-	* OUT 
+  * OUT 
+
 ```
- 17.5 17.5
+0 0
 ```
-	* IN
-```
- -99 0
- -2 -10
-```
-	* OUT 
-```
- -50.5 -5
-```
-	* IN
-```
- -99 -99
- 99 99
-```
-	* OUT 
-```
- 0 0
-```
+
 
 ```js
 // Nodejs
@@ -771,6 +756,7 @@ n = int(input())
 # SUM(U(n)∀n∊{1,n}) = ( ( U(0)+U(n) )/2 ) * n = n*n
 print(math.ceil(n * n / 10))
 ```
+
 ---
 ### Digit Multiplication
 > lvl3 algo codingame clashofcode codegolf
@@ -797,6 +783,7 @@ c=-1
 a=n=>{c++;n.length==1?console.log(c):a(n.split``.reduce((r,e)=>r*parseInt(e)).toString())}
 a(readline())
 ```
+
 ---
 ### Reverse Word
 > lvl2 algo codingame clashofcode
@@ -822,6 +809,7 @@ res=S.split` `.map(e=>e=e.split``.reverse().join``)
 
 console.log(res.join` `);
 ```
+
 ---
 ### Yoda translation
 > lvl2 algo codingame clashofcode
@@ -864,6 +852,7 @@ s=s.charAt(0).toLowerCase() + s.slice(1)
 
 console.log(`${r} ${s}`);
 ````
+
 ---
 ### Shifted String
 > lvl2 algo codingame clashofcode codegolf
@@ -895,6 +884,7 @@ I=r().split` `
 a=I.shift()
 console.log(`${I.join` `} ${a}`)
 ```
+
 ---
 ### Altered Letters
 > lvl2 algo codingame clashofcode reverse
@@ -917,6 +907,7 @@ l.split``.map((e,i)=>res+=String.fromCharCode(e.charCodeAt(0)+i))
 
 console.log(res)
 ```
+
 ---
 ### Average ASCII value of the string
 > lvl2 algo codingame clashofcode codegolf
@@ -958,6 +949,7 @@ print(chr(sum(ord(i)for i in input())//l))
 n=int(input())
 print(chr(sum(map(ord,list(input())))//n))
 ```
+
 ---
 ### Ascii Affine Graph
 > lvl3 algo codingame clashofcode codegolf
@@ -999,6 +991,7 @@ res.push(a.join``)
 }
 console.log(res.join`\n`)
 ```
+
 ---
 ### Weird Reversed Word
 > lvl3 algo codingame clashofcode reverse
@@ -1025,6 +1018,7 @@ for i in range(len(s)):
 print(a[::-1]+b)
 
 ```
+
 ---
 ### Diamond ASCII
 > lvl3 algo codingame clashofcode
@@ -1087,8 +1081,9 @@ for i in range(n):
 for i in range(n-1,-1,-1):
     print(" " * (n-i-1) + "#" * (2*i+1))
 ```
+
 ---
-### Comming soon ...
+### Weird Reverse Word
 > lvl3 algo codingame clashofcode reverse UNSOLVED
 * **EXAMPLE**
 	* IN `Hello World`
@@ -1171,6 +1166,8 @@ H=6 |OXOX+--+ -Y=2-
 5 5
 2 2
 ```
+  * OUT
+
 ```
  +-+
  |X|
@@ -1232,6 +1229,7 @@ l[0][0] = l[0][x] = l[y][x] = l[y][-1] = l[-1][0] = l[-1][-1] = "+"
 for x in l:
     print("".join(x))
 ```
+
 ---
 ### Comming soon ...
 > 
@@ -1240,4 +1238,3 @@ for x in l:
 * **OUTPUT**
 * **CONSTRAINT**
 * **EXAMPLE**
----
