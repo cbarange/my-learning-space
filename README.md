@@ -2,6 +2,7 @@
 > cbarange | 10th December 2020
 
 ## TODO
+* wsdl soap rest
 * json ld
 * ocaml language
 * Qubes-os pop-os 
