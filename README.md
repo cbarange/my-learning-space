@@ -1,6 +1,13 @@
 # Some memo for IT
 > cbarange | 10th December 2020
 
+## Best Practice
+
+Pas plus de 20 lignes par fonction
+On Signe et date les commentaires
+
+
+
 ## TODO
 * wsdl soap rest
 * json ld
