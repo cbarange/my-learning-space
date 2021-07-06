@@ -1329,3 +1329,17 @@ q.....k.
 -22
 
 
+
+
+R=readline
+N=R()
+o={p:1,n:3,b:3,r:5,q:9,k:0}
+A=e=>o[e.toLowerCase()]?o[e.toLowerCase()]:0
+W=0
+for(i=0;i<+N;i++)
+R().split``.forEach(e=>e==e.toUpperCase()?W+=A(e):W-=A(e))
+print(W?W:'equal')
+
+The_ZimaBlue 100% SCORE 00:06:24 DUREE Bash LANGAGE 110 CARACTÈRES
+themwa 100% SCORE 00:13:46 DUREE JavaScript LANGAGE 189
+
