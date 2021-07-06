@@ -6,6 +6,16 @@
 Pas plus de 20 lignes par fonction
 On Signe et date les commentaires
 
+## Idées de cours
+
+XML
+
+Regex
+
+Asynchrone / Thread
+
+Gestion de projet
+
 
 
 ## TODO
