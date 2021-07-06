@@ -1238,3 +1238,94 @@ for x in l:
 * **OUTPUT**
 * **CONSTRAINT**
 * **EXAMPLE**
+
+
+Given a chess position, your task is to determine the material advantage (or disadvantage) from the white player's perspective. The total material a player has is the sum of the values of each remaining piece on the board that belongs to him.
+
+Each chess position is represented by an 8 x 8 matrix of squares. Each piece is identified by a single letter. White pieces are designated using upper-case letters, while black pieces use lower-case letters. Empty squares are given as dots.
+
+The standard value of each piece is:
+1 Pawn: P, p
+3 Knight: N, n
+3 Bishop: B, b
+5 Rook: R, r
+9 Queen: Q, q
+0 King: K, k (not counted)
+Entrée
+Line 1: an integer N for the height of the board.
+N next lines: a string S representing the squares in that row.
+Sortie
+A single line with an integer D, representing the difference between white's material and black's. If the difference is 0, print equal instead.
+Contraintes
+Since the chess board is fixed in a size of 8 x 8:
+N = 8
+size(S) = 8
+-103 <= D <= 103
+Exemple
+Entrée
+8
+.R......
+n.......
+........
+k.K.....
+........
+.......P
+........
+........
+Sortie
+3
+
+
+
+8
+.r..k...
+.....p.p
+......p.
+.r.....P
+.....QP.
+......K.
+.....P..
+........
+-1
+
+
+
+
+8
+rnbqkbnr
+pppppppp
+........
+........
+........
+........
+PPPPPPPP
+RNBQKBNR
+equal
+
+
+
+
+8
+r..q...k
+pn..bprp
+....pNp.
+..p.PbQ.
+...p.P..
+.....NR.
+PP....PP
+..B..RK.
+-1
+
+
+8
+q.....k.
+......q.
+.......q
+........
+........
+........
+......R.
+......K.
+-22
+
+
