@@ -1343,3 +1343,131 @@ print(W?W:'equal')
 The_ZimaBlue 100% SCORE 00:06:24 DUREE Bash LANGAGE 110 CARACTÈRES
 themwa 100% SCORE 00:13:46 DUREE JavaScript LANGAGE 189
 
+---
+
+
+
+
+Decorate text by surrounding it with the given decoration character, N number of times. Provide one space before & after the text as shown in the examples below.
+
+For Example 1 :
+
+Input :
+
+welcome * 1
+
+output :
+
+***********
+* welcome *
+***********
+
+Example 2:
+
+Input :
+
+Awesome $ 4
+
+Output :
+
+$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$
+$$$$ Awesome $$$$
+$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$
+Entrée
+A line containing 3 parameters namely text , decoration character and N number of times.
+Sortie
+print text with decoration
+Contraintes
+1 < N < 10
+Exemple
+Entrée
+HELLO * 2
+Sortie
+***********
+***********
+** HELLO **
+***********
+***********
+
+
+
+
+
+
+
+
+HELLO * 2
+***********
+***********
+** HELLO **
+***********
+***********
+
+
+
+welcome * 1
+***********
+* welcome *
+***********
+
+
+
+Awesome $ 4
+$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$
+$$$$ Awesome $$$$
+$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$
+
+
+
+
+wow * 5
+***************
+***************
+***************
+***************
+***************
+***** wow *****
+***************
+***************
+***************
+***************
+***************
+
+
+
+
+
+
+
+
+
+I=readline().split` `
+o=+I[2]
+a=e=>I[1].repeat(e)
+for(i=0;i<o*2+1;i++)
+print(i==o?a(o)+" "+I[0]+" "+a(o):a(I[0].length+2+o*2))
+
+
+
+
+
+
+
+i,n,p=input().split()
+p=int(p)
+m=(n*len(i)+n*2*p+n*2+"\n")*p
+print(m,end="")
+print(p*n+" "+i+" "+p*n+"\n"+m)
+
