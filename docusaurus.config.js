@@ -14,6 +14,9 @@ module.exports = {
   projectName: 'cbarange.github.io', // Usually your repo name.
   trailingSlash: false,
   themeConfig: {
+    colorMode: {
+      defaultMode: 'dark', // "light" | "dark"
+    },
     navbar: {
       title: 'My Site',
       logo: {

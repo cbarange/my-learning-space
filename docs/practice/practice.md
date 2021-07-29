@@ -1,3 +1,9 @@
+---
+sidebar_position: 1
+sidebar_label: 'practice'
+---
+
+
 # Some practice for IT
 > cbarange | 16th December 2020
 ---
