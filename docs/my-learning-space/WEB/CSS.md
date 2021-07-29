@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # CSS
 
 Tailwind started kit : https://github.com/creativetimofficial/tailwind-starter-kit

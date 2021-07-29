@@ -974,6 +974,23 @@ Base64 est généralement 33% plus long que sa valeur text/plain
 ### Data URLs
 > [url, browser, data, base64]
 
+
+
+`data:text/html;base64,PGgxPkhleSAhPC9oMT4=`
+https://developer.mozilla.org/fr/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
+
+```html
+<!DOCTYPE html>
+<title>My Example</title>
+
+<div style="border:1px solid black;height:100px;width:140px;overflow-y:hidden;overflow-x:scroll;">
+<p style="width:250%;">
+By using overflow-x, we can create scroll bars when the contents of this div are wider than the container. By setting this paragraph to 200 percent, it is 200 percent wider than the parent container - forcing an overflow. 
+</p>
+</div>
+```
+
+
 * Answer : https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
 
 **Example**

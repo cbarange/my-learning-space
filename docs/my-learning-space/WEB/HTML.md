@@ -1,20 +1,8 @@
+---
+sidebar_position: 1
+---
+
 # HTML
-
-
-`data:text/html;base64,PGgxPkhleSAhPC9oMT4=`
-https://developer.mozilla.org/fr/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
-
-```html
-<!DOCTYPE html>
-<title>My Example</title>
-
-<div style="border:1px solid black;height:100px;width:140px;overflow-y:hidden;overflow-x:scroll;">
-<p style="width:250%;">
-By using overflow-x, we can create scroll bars when the contents of this div are wider than the container. By setting this paragraph to 200 percent, it is 200 percent wider than the parent container - forcing an overflow. 
-</p>
-</div>
-```
-
 
 ## Common usage of html
 > docs : https://developer.mozilla.org/en-US/docs/Learn
@@ -57,6 +45,56 @@ By using overflow-x, we can create scroll bars when the contents of this div are
   </body>
 </html>
 ```
+
+### Content structure
+
+
+```xml
+<ul> <!-- Unordered -->
+  <li>milk</li>
+  <li>eggs</li>
+</ul>
+
+<ol> <!-- Ordered -->
+  <li>Drive to the end of the road</li>
+  <li>Turn right</li>
+</ol>
+
+<!-- Emphasis and importance -->
+<span>  </span> <!-- highlight some word -->
+<i>  </i> <!-- highlight some letter -->
+<em> </em> <!-- highlight one word -->
+<b> </b> <!-- bold word --> 
+<strong> </strong> <!-- bold text -->
+<u> </u> <!-- underline -->
+<!-- eg -->
+<p> On <strong>Sunday January 9th 2010</strong>, a gang of <em>goths</em> were spotted [...] <span>If anyone has <strong>any</strong> information about this incident, <b>please</b> contact the police <strong>now</strong>.</span> <i>see you soon</i>></p>
+
+<!-- hyperlink -->
+<a href="https://www.mozilla.org/en-US/" title="Tooltips when mouse hover">the Mozilla homepage</a>
+<a href="https://mozilla.org/"> <img src="mozilla-image.png" alt="mozilla logo link to home page"></a>
+<!-- same directory href="contacts.html" -->
+<!-- Moving down into subdirectories href="projects/index.html" -->
+<!-- Moving back up into parent directories href="../pdfs/project-brief.pdf" -->
+
+<!-- Document fragments -->
+<h2 id="Mailing_address">Mailing address</h2>
+<a href="#Mailing_address">mail</a>
+<a href="contacts.html#Mailing_address">mail</a> <!-- anchor on other page -->
+
+
+<a href="https://download.mozilla.org/" download="firefox-latest-64bit-installer.exe">Download</a>
+<a href="mailto:nowhere@mozilla.org">Send email to nowhere</a>
+<a href="mailto:nowhere@mozilla.org?cc=name2@rapidtables.com&bcc=name3@rapidtables.com&subject=The%20subject%20of%20the%20email&body=The%20body%20of%20the%20email">Send mail with cc, bcc, subject and body</a>
+<a href="tel:123-456-7890">CLICK TO CALL</a>
+<a href="skype:555-666-7777">555-666-7777</a>. 
+
+
+<!-- absolute URL: Points to a location defined by its absolute location on the web, including protocol and domain name. -->
+<!-- relative URL: Points to a location that is relative to the file you are linking from -->
+<!-- Use relative wherever possible -->
+```
+
 
 ### Form
 
