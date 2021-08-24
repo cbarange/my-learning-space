@@ -15,6 +15,7 @@ sidebar_position: 1
     <meta charset="utf-8">
     <meta name="author" content="Here your name">
     <meta name="description" content="This will appear under search engines results">
+    <meta name="viewport" content="width=device-width"> <!-- this forces mobile browsers to adopt their real viewport width for loading web pages (some mobile browsers lie about their viewport width, and instead load pages at a larger viewport width then shrink the loaded page down, which is not very helpful for responsive images or design).-->
 
     <!-- Open Graph, used for previsualisation by socials networks and others -->
     <meta property="og:title" content="site_title">
@@ -93,6 +94,14 @@ sidebar_position: 1
 <!-- absolute URL: Points to a location defined by its absolute location on the web, including protocol and domain name. -->
 <!-- relative URL: Points to a location that is relative to the file you are linking from -->
 <!-- Use relative wherever possible -->
+
+<br/> <!-- Do not use <br> to create margins between paragraphs; wrap them in <p> elements and use the CSS margin property to control their size. -->
+```
+
+### Image
+
+```xml
+
 ```
 
 
